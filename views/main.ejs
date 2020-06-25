@@ -1,0 +1,36 @@
+<!--Parte en donde iria el header, pero fue este esta modificado para tener en cuenta el estado del usuario-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=pageTitle%></title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+<!--Parte en donde iria la navigation, pero fue modificada para tener en cuenta el estado del usuario-->
+    <body>
+        <nav class="navbar navbar-light bg-light">
+            <form action="/reiniciar" method="POST">
+                <button type="submit" class="btn btn-light"><a class="navbar-brand" style="font-size: 25px;">LOGO</a></button>
+                <input type="hidden" name="estado" value="0">
+            </form>
+        </nav>
+        <br> 
+<!---->
+        <div class="row">
+            <div class=" btn-group-vertical col-md-4" role="group" aria-label="Basic example" >
+                <a href="/video"><button type="button" class="btn btn-outline-primary" style="font-size: 2rem; width: 27.2rem;">Video</button></a> 
+                <a href="/imagenes"><button type="button" class="btn btn-outline-primary" style="font-size: 2rem; width: 27.2rem;">Imagenes</button></a> 
+                <a href="/audio"><button type="button" class="btn btn-outline-primary" style="font-size: 2rem; width: 27.2rem;">Audio</button></a>
+                <a href="/texto"><button type="button" class="btn btn-outline-primary" style="font-size: 2rem; width: 27.2rem;">Texto</button></a>
+                <a href="/fisico"><button type="button" class="btn btn-outline-primary" style="font-size: 2rem; width: 27.2rem;">Fisico</button></a>
+                <button type="button" class="btn btn-outline-primary" style="font-size: 2rem; width: 27.2rem;">Comida</button>
+                <button type="button" class="btn btn-outline-primary" style="font-size: 2rem; width: 27.2rem;">Olores</button>
+            </div>
+            <div class="col-md-7" style="margin-left: auto; margin-right: auto; margin-top: auto; margin-bottom: auto;" >
+                <% for (var i = 0; i<usuario.length; i++) {%>
+                    <h1>Hola <%= usuario[i].nombre %>, Elige una opcion</h1>
+                <%}%>
+            </div>
+        </div>
+    </body>
+</html>

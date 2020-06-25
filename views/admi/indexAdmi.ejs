@@ -1,0 +1,23 @@
+<%- include('../includes/header.ejs')%>
+<%- include('../includes/navigation.ejs')%>
+
+<div class="">
+    <div class="text-center"></div>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>SEXO</th>
+            <th>ESTADO</th>
+        </tr>
+        <% for(var i = 0; i<datos.length; i++){ %>
+            <tr>
+                <td><%=datos[i].id_usuario %></td>
+                <td><%=datos[i].nombre%></td>
+                <td><%=datos[i].sexo%></td>
+                <td><%=datos[i].estado%></td>  
+            </tr>
+        <%}%>
+    </table>
+</div>
+</body>
