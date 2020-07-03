@@ -23,7 +23,7 @@ exports.postUsuario = (req,res)=>{
 exports.postReiniciarUsuario = (req,res)=>{
     console.log(req.body)
     const {estado} = req.body;
-    conexion.query('UPDATE usuario SET estado = 0 WHERE id_usuario = 4',{
+    conexion.query('UPDATE usuario SET estado = 0 WHERE id_usuario = 6',{
         estado,
     },(err,result)=>{
         res.redirect('/');

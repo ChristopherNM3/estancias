@@ -29,3 +29,21 @@ exports.getFisico = (req,res) =>{
         pageTitle: 'Fisico',
     });
 };
+
+exports.getComida1 = (req,res) =>{
+    res.render('./ejercicios/sustancia1',{
+        pageTitle:'Prueba',
+    });
+}
+
+exports.getSustancia2 = (req,res) =>{
+    res.render('./ejercicios/sustancia2',{
+        pageTitle:'Prueba',
+    });
+}
+
+exports.getSustancia3 = (req,res) =>{
+    res.render('./ejercicios/sustancia3',{
+        pageTitle:'Prueba',
+    })
+}
