@@ -6,8 +6,59 @@
     <h1> Observa las imagenes</h1>
 </div>
 <!--Chat-->
-<div class=" col-md-4" style="float:right">
-    <center><iframe marginwidth="0" marginheight="0" src="http://www.chatsala.com/embebido.php?canal=Fabian&width=400&height=550" width="400" height="550" scrolling="no" frameborder="0"></iframe><br>Webchat ofrecido por: <a href="http://www.chatsala.com/" title="Chat chatsala.com"><strong>Chatsala.com</strong></a></center>
+<div class=" col-md-5" style="float:right">
+    <div class="card">
+        <div class="card-body">
+            <h4>¿Reconoces alguna imagen?</h4> <br>
+            <form action="">
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="" value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Si
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="" value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                            No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="" value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                            Talvez
+                            </label>
+                        </div>
+                    </div>
+                </div> <br>
+                <!--2da pregunta-->
+                <h4>Describe en 3 palabras la imagen No.1</h4> <br>
+                <div class="form-group">
+                    <input type="" class="form-control" id="" placeholder="">
+                </div> <br>
+                <!--3da pregunta-->
+                <h4>Selecciona alguna caracteristica de la imagen No.2</h4> <br>
+                <select class="form-control form-control-sm">
+                    <option>Opcion 1</option>
+                    <option>Opcion 2</option>
+                    <option>Opcion 3</option>
+                </select> <br>
+                <div class="container">
+                    <div class="row">
+                        <div class="mx-auto">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <!--Imagen-->
@@ -40,9 +91,9 @@
 </div>
 <br>
 <div class="row col-md-6" style="width:25rem; margin-left: auto; margin-right: auto;">
-    <a href="/audio">
+    <a href="javascript:enlaceAleatorio()">
         <button type="button" class="btn btn-primary" style="font-size: 2rem;">Siguiente</button>
     </a>
 </div>
-<br>
+
 

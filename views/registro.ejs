@@ -4,33 +4,61 @@
     <link rel="stylesheet" href="/main/main.css">
     <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand" style="font-size: 30px;">LOGO</a>
-      <a href="./main">
-        <button type="button" class="btn btn-primary" style="font-size: 20px;">Omitir</button>
-      </a>
     </nav>
     <br> <br>
-    <!--Imagen-->
-    <div class="card" style="width: 12rem; height: 12rem; margin-right: auto; margin-left: auto;;">
-        <div class="">
-            <img src="/imagenes/user.png" class="card-img-top" width="200px">
-        </div>
-    </div>
-    <br><br>
     <!--formulario-->
-    <div>
-        <form action="/registrando" method="POST">
-            <div class="form-group col-12" style="width: 27rem; margin-right: auto; margin-left: auto;" >
-                <input name="nombre" class="form-control" id="exampleFormControlInput1"  placeholder="Introduce un nombre">
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          <form class="needs-validation" action="/registrando" method="POST" novalidate>
+            <div class="form-row">
+
+              <div class="col-md-5 mb-3">
+                <label>Nombre</label>
+                <input type="text" class="form-control" name="nombre" required>
               </div>
-              <div class="form-group" style="width: 25rem; margin-right: auto; margin-left: auto;">
-                <select class="form-control" id="exampleFormControlSelect1" name="sexo">
-                  <option>Hombre</option>
-                  <option>Mujer</option>
+
+              <div class="col-md-5 mb-3">
+                <label>Edad</label>
+                <input type="text" class="form-control" name="edad" required>
+              </div>
+
+              <div class="col-md-2 mb-3">
+                <label>Sexo</label>
+                <select class="custom-select" name="sexo" required>
+                  <option selected >Hombre</option>
+                  <option selected >Mujer</option>
                 </select>
               </div>
-              <input type="hidden" name="estado" value=1>
-              <div style="width: 5rem; margin-right: auto; margin-left: auto;">
-                <button type="submit" class="btn btn-primary">Aceptar</button>
+            </div>
+
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label>Altura</label>
+                <input type="text" class="form-control" name="altura" required>
               </div>
-        </form>
+
+              <div class="col-md-4 mb-3">
+                <label>Peso</label>
+                <input type="text" class="form-control" name="peso" required>
+              </div>
+
+              <div class="col-md-4 mb-3">
+                <label>Cintura</label>
+                <input type="text" class="form-control" name="cintura" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="mx-auto">
+                  <button class="btn btn-primary btn-lg" type="submit">Aceptar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
+  
+  
+</body>
+<script src="./js/CalcularIMC.js"></script>

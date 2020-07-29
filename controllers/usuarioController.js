@@ -9,12 +9,21 @@ exports.getUsuario = (req,res) =>{
 
 //Introduce el usuario nuevo y redirige a main
 exports.postUsuario = (req,res)=>{
-    const {nombre, sexo, estado} = req.body;
+    var alturaimc = req.body.altura;
+    var pesoimc = req.body.peso;
+    var imc = pesoimc/(alturaimc*alturaimc);
+    console.log(imc);
+    const {nombre,edad,sexo,peso,altura,cintura} = req.body;
     conexion.query('INSERT INTO usuario SET?',{
         nombre,
+        edad,
         sexo,
-        estado,
+        peso,
+        altura,
+        cintura,
+        imc,
     },(err,result)=>{
+        console.log(req.body)
         res.redirect('/main');
     });
 };
@@ -23,7 +32,7 @@ exports.postUsuario = (req,res)=>{
 exports.postReiniciarUsuario = (req,res)=>{
     console.log(req.body)
     const {estado} = req.body;
-    conexion.query('UPDATE usuario SET estado = 0 WHERE id_usuario = 4',{
+    conexion.query('UPDATE usuario SET estado = 0 WHERE id_usuario = 6',{
         estado,
     },(err,result)=>{
         res.redirect('/');
