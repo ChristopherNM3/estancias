@@ -1,0 +1,31 @@
+<%- include('../includes/header.ejs')%>
+
+<br>
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div class="form-group">
+                <form action="/sustancia8">
+                    <div class="row">
+                        <div class="mx-auto">
+                            <h4>Pregunta No.7</h4> <br>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <input type="range" class="form-control-range" min='1' max="100" id="range">
+                        </div>
+                        <div class="col-md-2">
+                            <h5><span id="demo"></span></h5> 
+                        </div>
+                        <div class="mx-auto">
+                            <button type="input" class="btn btn-primary" style="font-size: 1.5rem;">Siguiente</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./js/sliderView.js"></script>
+</body>

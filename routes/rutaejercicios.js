@@ -10,8 +10,14 @@ router.get('/audio',controladorEjercicio.getAudio);
 router.get('/imagenes',controladorEjercicio.getImagen);
 router.get('/texto',controladorEjercicio.getTexto);
 router.get('/fisico',controladorEjercicio.getFisico);
-router.get('/sustancia1',controladorEjercicio.getComida1);
-router.get('/sustancia2',controladorEjercicio.getSustancia2);
-router.get('/sustancia3',controladorEjercicio.getSustancia3);
+router.get('/sustancia',controladorEjercicio.getMuestra10);
+router.get('/sustancia1',controladorEjercicio.getMuestra11);
+router.get('/sustancia2',controladorEjercicio.getMuestra12);
+router.get('/sustancia3',controladorEjercicio.getMuestra13);
+router.get('/sustancia4',controladorEjercicio.getMuestra14)
+router.get('/sustancia5',controladorEjercicio.getMuestra15);
+router.get('/sustancia6',controladorEjercicio.getMuestra16);
+router.get('/sustancia7',controladorEjercicio.getMuestra17);
+router.get('/sustancia8',controladorEjercicio.getMuestra18);
 
 module.exports = router;

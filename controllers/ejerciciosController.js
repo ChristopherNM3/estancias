@@ -30,20 +30,56 @@ exports.getFisico = (req,res) =>{
     });
 };
 
-exports.getComida1 = (req,res) =>{
-    res.render('./ejercicios/sustancia1',{
+exports.getMuestra10 = (req,res) =>{
+    res.render('./ejercicios/sustancia10',{
         pageTitle:'Prueba',
     });
 }
 
-exports.getSustancia2 = (req,res) =>{
-    res.render('./ejercicios/sustancia2',{
+exports.getMuestra11 = (req,res) =>{
+    res.render('./ejercicios/sustancia11',{
         pageTitle:'Prueba',
     });
 }
 
-exports.getSustancia3 = (req,res) =>{
-    res.render('./ejercicios/sustancia3',{
+exports.getMuestra12 = (req,res) =>{
+    res.render('./ejercicios/sustancia12',{
         pageTitle:'Prueba',
     })
-}
+};
+
+exports.getMuestra13 = (req,res) =>{
+    res.render('./ejercicios/sustancia13',{
+        pageTitle:'Prueba',
+    })
+};
+
+exports.getMuestra14 = (req,res) =>{
+    res.render('./ejercicios/sustancia14',{
+        pageTitle:'Prueba',
+    })
+};
+
+exports.getMuestra15 = (req,res) =>{
+    res.render('./ejercicios/sustancia15',{
+        pageTitle:'Prueba',
+    })
+};
+
+exports.getMuestra16 = (req,res) =>{
+    res.render('./ejercicios/sustancia16',{
+        pageTitle:'Prueba',
+    })
+};
+
+exports.getMuestra17 = (req,res) =>{
+    res.render('./ejercicios/sustancia17',{
+        pageTitle:'Prueba',
+    })
+};
+
+exports.getMuestra18 = (req,res) =>{
+    res.render('./ejercicios/sustancia18',{
+        pageTitle:'Prueba',
+    })
+};
