@@ -4,7 +4,7 @@ function enlaceAleatorio() {
     /*direccionPagina [0] = '/video';
     direccionPagina [1] = '/texto';
     direccionPagina [2] = '/audio';*/
-    direccionPagina [0] = '/texto';
+    //direccionPagina [0] = '/texto';
     /*direccionPagina [4] = '/fisico';
     direccionPagina [5] = '/imagenes';*/
     direccionPagina [1] = '/sustancia';
