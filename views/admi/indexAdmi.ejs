@@ -7,15 +7,21 @@
         <tr>
             <th>ID</th>
             <th>NOMBRE</th>
-            <th>SEXO</th>
-            <th>ESTADO</th>
+            <th>EDAD</th>
+            <th>PESO</th>
+            <th>ALTURA</th>
+            <th>CINTURA</th>
+            <th>IMC</th>
         </tr>
         <% for(var i = 0; i<datos.length; i++){ %>
             <tr>
                 <td><%=datos[i].id_usuario %></td>
                 <td><%=datos[i].nombre%></td>
-                <td><%=datos[i].sexo%></td>
-                <td><%=datos[i].estado%></td>  
+                <td><%=datos[i].edad%></td>
+                <td><%=datos[i].peso%></td>  
+                <td><%=datos[i].altura%></td>
+                <td><%=datos[i].cintura%></td>
+                <td><%=datos[i].imc%></td>
             </tr>
         <%}%>
     </table>

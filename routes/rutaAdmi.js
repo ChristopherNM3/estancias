@@ -5,5 +5,5 @@ const router = express.Router();
 const controladorAdmi = require('../controllers/admiController');
 
 router.get('/admi',controladorAdmi.getAdmi);
-
+router.get('/result',controladorAdmi.getResult);
 module.exports = router;
