@@ -1,4 +1,11 @@
+var arrayInput = new Array(); //Creacion del arreglo para asignarle nombre al video
+var inputsValues = document.getElementsByClassName('name');
+nameValues = [].map.call(inputsValues,function(dataInput){
+    arrayInput.push(dataInput.value);
+})
+let name = document.getElementsByName("name");
 let video = document.querySelector("video");
+
 
 function IniciarVideo(){
     navigator.mediaDevices.getUserMedia({audio:true, video:true})
@@ -6,7 +13,9 @@ function IniciarVideo(){
     .catch(err => console.log(err));
 };
 
+
 let chunks = [];
+var videoName = arrayInput[0]+","+arrayInput[1];
 
 function record(stream){
     video.srcObject = stream;
@@ -21,10 +30,12 @@ function record(stream){
         chunks.push(e.data);
     }
     mediaRecorder.onstop = function(){
+        //alert(arrayNameVideo[0]);
         alert('Finalizo la grabacion');
         let blod = new Blob(chunks,{type:"video/mp4"});
         chunks = [];
         download(blod);
+        
         
 
     }
@@ -33,19 +44,20 @@ function record(stream){
     })
 }
 
-let name = [];
-name = ['01,1']
+
 
 function download(blod){
     var link = document.createElement("a");
     link.href = window.URL.createObjectURL(blod);
-    link.setAttribute("download",name[0]);
+    link.setAttribute("download",videoName);
     link.style.display = "none";
+    
 
     document.body.appendChild(link);
 
     link.click();
     link.remove();
+    arrayInput = [];
 }
 
 window.onload = video();

@@ -12,18 +12,17 @@ exports.postUsuario = (req,res)=>{
     var alturaimc = req.body.altura;
     var pesoimc = req.body.peso;
     var imc = pesoimc/(alturaimc*alturaimc);
-    //console.log(imc);
-    const {nombre,edad,sexo,peso,altura,cintura} = req.body;
-    conexion.query('INSERT INTO usuario SET?',{
+    console.log(imc);
+    const {nombre,edad,peso,altura,cintura} = req.body;
+    conexion.query("INSERT INTO usuario SET ?",{
         nombre,
         edad,
-        sexo,
         peso,
         altura,
         cintura,
-        imc,
+        imc
     },(err,result)=>{
-        //console.log(req.body)
+        console.log(err)
         res.redirect('/main');
     });
 };

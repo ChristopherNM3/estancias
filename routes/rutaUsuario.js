@@ -6,6 +6,5 @@ const controladorUsuario = require('../controllers/usuarioController');
 
 router.get('/',controladorUsuario.getUsuario);
 router.post('/registrando',controladorUsuario.postUsuario);
-router.post('/reiniciar',controladorUsuario.postReiniciarUsuario)
 
 module.exports = router;

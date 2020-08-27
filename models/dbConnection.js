@@ -7,6 +7,6 @@ module.exports = () => {
         host: 'localhost', //Direccion de la BD
         user: 'root',
         password: '',
-        database: 'prueba' //Nombre de la BD
+        database: 'estancia' //Nombre de la BD
     });
 };
