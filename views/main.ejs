@@ -1,0 +1,40 @@
+<!--Parte en donde iria el header, pero fue este esta modificado para tener en cuenta el estado del usuario-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=pageTitle%></title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+</head>
+<!--Parte en donde iria la navigation, pero fue modificada para tener en cuenta el estado del usuario-->
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <form action="/reiniciar" method="POST">
+            <button type="submit" class="btn btn-light"><a class="navbar-brand" style="font-size: 25px;">LOGO</a></button>
+            <input type="hidden" name="estado" value="0">
+        </form>
+    </nav>
+    <br> 
+<!---->
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto">
+                <h1>Contesta las preguntas con sinceridad</h1>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto">
+                <div class="mx-auto col-12">
+                <form action="/sustancia1" method="POST" >
+                    
+                    <button type="submit" class="btn btn-light"><a class="navbar-brand" style="font-size: 25px;">Comenzar</a></button>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!--<script type="text/javascript" src="../paginaAleatoria.js"></script>-->

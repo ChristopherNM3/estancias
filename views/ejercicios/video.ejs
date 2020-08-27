@@ -1,0 +1,72 @@
+<%- include('../includes/header.ejs')%>
+<%- include('../includes/navigation2.ejs')%>
+
+
+<div class="col-md-12">
+    <h1>Mira el video</h1>
+</div>
+<!--Video traido desde YouTube-->
+<div class="row col-md-7" style="float: left;">
+    <iframe width="853" height="480"  src="https://www.youtube.com/embed/pKemSP-Ei58" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<!--Chat-->
+<div class="row col-md-5">
+    <div class="card">
+        <div class="card-body">
+            <h4>¿Reconoces el video?</h4> <br>
+            <form action="">
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="" value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Si
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="" value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                            No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="" value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                            Talvez
+                            </label>
+                        </div>
+                    </div>
+                </div> <br>
+                <!--2da pregunta-->
+                <h4>Describe en 3 palabras el video</h4> <br>
+                <div class="form-group">
+                    <input type="" class="form-control" id="" placeholder="">
+                </div> <br>
+                <!--3da pregunta-->
+                <h4>Selecciona alguna caracteristica del video</h4> <br>
+                <select class="form-control form-control-sm">
+                    <option>Opcion 1</option>
+                    <option>Opcion 2</option>
+                    <option>Opcion 3</option>
+                </select> <br>
+                <div class="container">
+                    <div class="row">
+                        <div class="mx-auto">
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row col-md-6" style="width:50rem; margin-left: auto; margin-right: auto;">
+    <a href="javascript:enlaceAleatorio()">
+        <button type="button" class="btn btn-primary" style="font-size: 2rem;">Siguiente</button>
+    </a>
+</div>
+</body>
