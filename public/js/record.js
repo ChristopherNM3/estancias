@@ -13,7 +13,7 @@ let sujeto = document.getElementById("sujeto");
 function IniciarVideo(){
     navigator.mediaDevices.getUserMedia({audio:true, video:true})
     .then(record)
-    .catch(err => console.log(err));
+    .catch(err => console.log("err"));
 };
 
 
