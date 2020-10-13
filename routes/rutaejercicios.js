@@ -11,8 +11,8 @@ router.get('/imagenes',controladorEjercicio.getImagen);
 router.get('/texto',controladorEjercicio.getTexto);
 router.get('/fisico',controladorEjercicio.getFisico);*/
 router.get('/sustancia',controladorEjercicio.getMuestra10);
-/*router.get('/sustancia1',controladorEjercicio.getMuestra11);
-router.get('/sustancia2',controladorEjercicio.getMuestra12);
+router.get('/sustancia1',controladorEjercicio.getMuestra11);
+/*router.get('/sustancia2',controladorEjercicio.getMuestra12);
 router.get('/sustancia3',controladorEjercicio.getMuestra13);
 router.get('/sustancia4',controladorEjercicio.getMuestra14)
 router.get('/sustancia5',controladorEjercicio.getMuestra15);

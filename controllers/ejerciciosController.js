@@ -2,36 +2,6 @@
 const dbConnection = require('../models/dbConnection');
 const conexion = dbConnection();
 
-/*exports.getVideo = (req,res) =>{
-    res.render('./ejercicios/video',{
-        pageTitle: 'Video',
-    });
-};
-
-exports.getImagen = (req,res) =>{
-    res.render('./ejercicios/imagenes',{
-        pageTitle: 'Imagen',
-    });
-};
-
-exports.getAudio = (req,res) =>{
-    res.render('./ejercicios/audio',{
-        pageTitle: 'Audio',
-    });
-};
-
-exports.getTexto = (req,res) =>{
-    res.render('./ejercicios/texto',{
-        pageTitle: 'Texto',
-    });
-};
-
-exports.getFisico = (req,res) =>{
-    res.render('./ejercicios/fisico',{
-        pageTitle: 'Fisico',
-    });
-};*/
-
 exports.getMuestra10 = (req,res) =>{
     res.render('./ejercicios/sustancia10',{
         pageTitle:'Prueba',
