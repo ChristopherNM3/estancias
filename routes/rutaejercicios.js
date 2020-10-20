@@ -30,6 +30,15 @@ router.post('/sustancia7',controladorEjercicio.postMuestra16);
 router.post('/sustancia8',controladorEjercicio.postMuestra17);
 router.post('/sustancia',controladorEjercicio.postMuestra18);
 
+//rango
+router.get('/rango',controladorEjercicio.getRange)
+router.get('/rango2',controladorEjercicio.getRange2);
+router.get('/rango3',controladorEjercicio.getRange3);
+router.get('/rango4',controladorEjercicio.getRange4);
+router.post('/rango',controladorEjercicio.postRange);
 
+//preferencias
+router.get('/preferencias',controladorEjercicio.getPreferencias);
+router.post('/guardar-preferencias',controladorEjercicio.postGuardarPreferencias);
 
 module.exports = router;

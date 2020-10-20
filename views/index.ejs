@@ -1,7 +1,34 @@
-<!--Elementos que se repiten en la mayoria de las ventanas-->
-<%- include('./includes/header.ejs')%> 
-<%- include('./includes/navigation.ejs')%><!--navigation exclusiva para index-->
-<!---->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script defer src="../js/face-api.min.js"></script>
+  <script defer src="../js/script.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    canvas {
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <video id="video" width="720" height="560" autoplay muted></video>
+</body>
+</html>
+
+<!--
 <div class="card col-md-5 col-sm-12" style="float: left; height: 15rem; align-items: center;">
     <div class="card-body">
         <div class="card-title">
@@ -27,4 +54,4 @@
         <b>Iniciar NAME</b> 
     </div>
 </a>
-</body>
+</body>-->

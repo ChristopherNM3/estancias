@@ -269,3 +269,75 @@ exports.postMuestra18 = (req,res)=>{
         res.redirect('/sustancia');
     });
 };
+
+exports.getRange = (req,res)=>{
+    res.render('./rango/rangoBajo',{
+        pageTitle:"Muestra Rango",
+    });
+};
+
+exports.getRange2 = (req,res)=>{
+    res.render('./rango/rangoMedio',{
+        pageTitle:"Muestra Rango",
+    });
+};
+
+exports.getRange3 = (req,res)=>{
+    res.render('./rango/rangoMedioAlto',{
+        pageTitle:"Muestra Rango",
+    });
+};
+
+exports.getRange4 = (req,res)=>{
+    res.render('./rango/rangoAlto',{
+        pageTitle:"Muestra Rango",
+    });
+};
+
+exports.postRange = (req,res)=>{
+    const rango = req.body.calificacion;
+    if(rango < 25){
+        res.redirect('/rango4');
+    }
+    if((rango > 25) && (rango < 50)){
+        res.redirect('./rango2');
+    }
+    if((rango > 50)&&(rango<75)){
+        res.redirect('./rango3');
+    }
+    if(rango > 75){
+        res.redirect('/rango')
+    }
+};
+
+//PREFERENCIAS
+exports.getPreferencias = (req,res)=>{
+    //const id = req.body.id;
+    console.log("pepe");
+    conexion.query("SELECT * FROM comida ORDER BY RAND() LIMIT 8", (err, rows) => {
+        console.log(rows);
+        res.render('./ejercicios/preferencias',{
+            pageTitle:'Preferencias',
+            platillos: rows,
+            id: (Math.random()*1000),
+        });
+    });
+};
+
+exports.postGuardarPreferencias = (req,res)=>{
+    const id = req.body.id;
+    var obj = [];
+    obj.push(req.body.ID0.split(' '));
+    obj.push(req.body.ID1.split(' '));
+    obj.push(req.body.ID2.split(' '));
+    obj.push(req.body.ID3.split(' '));
+
+    for(let i=0; i<obj.length; i++){
+        conexion.query("INSERT INTO gustos set ?",{
+            id_usuario: id,
+            id_gusto: obj[i][0], 
+            id_no_gusto: obj[i][1],
+        });
+    }
+    res.redirect('/sustancia');
+};
