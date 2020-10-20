@@ -1,0 +1,29 @@
+<%- include('../includes/header.ejs')%>
+<%- include('../includes/navigation.ejs')%>
+
+<div class="">
+    <div class="text-center"></div>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>NOMBRE</th>
+            <th>EDAD</th>
+            <th>PESO</th>
+            <th>ALTURA</th>
+            <th>CINTURA</th>
+            <th>IMC</th>
+        </tr>
+        <% for(var i = 0; i<datos.length; i++){ %>
+            <tr>
+                <td><%=datos[i].id_usuario %></td>
+                <td><%=datos[i].nombre%></td>
+                <td><%=datos[i].edad%></td>
+                <td><%=datos[i].peso%></td>  
+                <td><%=datos[i].altura%></td>
+                <td><%=datos[i].cintura%></td>
+                <td><%=datos[i].imc%></td>
+            </tr>
+        <%}%>
+    </table>
+</div>
+</body>

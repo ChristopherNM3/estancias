@@ -1,0 +1,33 @@
+.flex-container {
+display: flex;
+align-items: center;
+text-align: center;
+}
+.centrar {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+img {
+    border-radius: 5%;
+    cursor: pointer;
+    width: 70%;
+    margin: 3px;
+}
+input {
+    width: 30px;
+    cursor: pointer;
+}
+.efecto:hover {
+    -webkit-transform:scale(1.05);
+    transform:scale(1.05);
+    transition: all 0.2s;
+}
+.radio:hover {
+    -webkit-transform:scale(1.50);
+    transform:scale(1.50);
+    transition: all 0.2s;
+}

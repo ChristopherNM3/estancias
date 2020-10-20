@@ -1,0 +1,30 @@
+<%- include('../includes/header.ejs')%>}
+<link rel="stylesheet" href="./css/preferencias.css">
+<br>
+<body class="centrar">
+    <div class="container">
+        <div class="flex-container">
+            <div id="div1" style="text-align: right; margin-right: 15px;">
+                <img id="img1" src="./imagenes/comida/<%=platillos[0].id%>.jpg" class="efecto" onclick="siguienteImagen('<%=platillos[0].id%>', '<%=platillos[1].id%>', 'img1', 'img2', '0')">
+            </div>
+            <div id="div2" style="text-align: left; margin-left: 15px;">
+                <img id="img2" src="./imagenes/comida/<%=platillos[1].id%>.jpg" class="efecto" onclick="siguienteImagen('<%=platillos[1].id%>', '<%=platillos[0].id%>', 'img2', 'img1', 0)">
+            </div>
+        </div>
+        <div  style="margin: 15px; align-items: flex-end;">
+            <form action="/guardar-preferencias" method="POST">
+                <div>
+                    <%var cont = 0;%>
+                    <% for(var i = 0; i<platillos.length/2; i++){ %>
+                        <input class="radio" type="radio" name="seccion" onclick="cambiarImagenes('<%=platillos[cont].id%>', '<%=platillos[cont+1].id%>', <%=i%>)" <%if(i==0){%>checked<%}%>>
+                        <input type="hidden" name="ID<%=i%>" id="ID<%=i%>" value="" >
+                        <%cont += 2%>
+                    <%}%>
+                    <input type="hidden" value="<%=id%>" name="id" id="sujeto">
+                </div> 
+                <div style="margin-top: 15px" id="boton" ></div>
+            </form>
+        </div>
+    </div>
+    <script src="./js/preferencias.js"></script>
+</body>
