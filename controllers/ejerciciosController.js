@@ -303,12 +303,13 @@ exports.postMuestra18 = (req,res)=>{
 exports.getPreferencias = (req,res)=>{
     //const id = req.body.id;
     console.log("pepe");
-    conexion.query("SELECT * FROM comida ORDER BY RAND() LIMIT 8", (err, rows) => {
+    conexion.query("SELECT * FROM listas", (err, rows) => {
         console.log(rows);
         res.render('./ejercicios/preferencias',{
             pageTitle:'Preferencias',
             platillos: rows,
-            id: (Math.random()*1000),
+            video: Math.floor(Math.random() * 10),
+	        rnd: Math.floor(Math.random() * 1),
         });
     });
 };

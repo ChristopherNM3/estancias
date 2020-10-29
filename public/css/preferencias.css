@@ -11,6 +11,13 @@ text-align: center;
     align-items: center;
     text-align: center;
 }
+.middle {
+    vertical-align: middle;
+    text-align:center;
+    left:10%;
+    position:relative;
+    display:table-cell;
+}
 img {
     border-radius: 5%;
     cursor: pointer;
