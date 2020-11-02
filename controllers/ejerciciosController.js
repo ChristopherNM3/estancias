@@ -302,31 +302,30 @@ exports.postMuestra18 = (req,res)=>{
 
 exports.getPreferencias = (req,res)=>{
     //const id = req.body.id;
-    console.log("pepe");
     conexion.query("SELECT * FROM listas", (err, rows) => {
         console.log(rows);
         res.render('./ejercicios/preferencias',{
             pageTitle:'Preferencias',
             platillos: rows,
             video: Math.floor(Math.random() * 10),
-	        rnd: Math.floor(Math.random() * 1),
+	        rnd: Math.floor(Math.random() * 2),
         });
     });
 };
 
 exports.postGuardarPreferencias = (req,res)=>{
     const id = req.body.id;
+    var body = JSON.parse(JSON.stringify(req.body));
     var obj = [];
-    obj.push(req.body.ID0.split(' '));
-    obj.push(req.body.ID1.split(' '));
-    obj.push(req.body.ID2.split(' '));
-    obj.push(req.body.ID3.split(' '));
-
+    for(var i in body) 
+        obj.push(body[i].split(' '));
+    obj.pop();
     for(let i=0; i<obj.length; i++){
         conexion.query("INSERT INTO gustos set ?",{
             id_usuario: id,
             id_gusto: obj[i][0], 
             id_no_gusto: obj[i][1],
+            id_lista: obj[i][2],
         });
     }
     res.redirect('/sustancia');

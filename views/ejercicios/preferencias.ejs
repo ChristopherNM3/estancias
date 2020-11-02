@@ -23,7 +23,7 @@
                         <%} else {%>
                             <input type="hidden" name="ID<%=i%>" id="ID<%=i%>" value="<%=platillos[i].lista_2%> <%=platillos[i].lista_1%> <%=platillos[i].id%>" >
                         <%}%>
-                        <%rnd = Math.floor(Math.random()*2)%>
+                        <%rnd = Math.floor(Math.random() * 2)%>
                     <%}%>
                     <input type="hidden" value="<%=video%>" class="name" name="id" id="sujeto">
                     <input type="hidden" value="1 - Preferencias" class="name" id="muestra">
@@ -35,5 +35,5 @@
         </div>
     </div>
     <script src="./js/preferencias.js"></script>
-    <script src="../js/record.js"></script>
+    <!-- <script src="../js/record.js"></script> -->
 </body>
