@@ -1,6 +1,7 @@
 //Controladores para llevar a los diferentes ejercicios y preguntas.
 const dbConnection = require('../models/dbConnection');
 const conexion = dbConnection();
+var bmi;
 
 exports.getMuestra10 = (req,res) =>{
     res.render('./ejercicios/sustancia10',{
@@ -270,21 +271,112 @@ exports.postMuestra18 = (req,res)=>{
     });
 };
 
+
+//RANGO-UMBRAL
 exports.getRange = (req,res)=>{
+    const id = req.body.id;
     res.render('./rango/rangoBajo',{
-        pageTitle:"Muestra Rango",
+        pageTitle:"Umbral",
+        video: id
     });
 };
 
-exports.getRange2 = (req,res)=>{
-    res.render('./rango/rangoMedio',{
-        pageTitle:"Muestra Rango",
+exports.postRange1 = (req,res)=>{
+    const id = req.body.id;
+    cm = req.body.calificacion;
+    
+    if(cm > 60){
+        bmi = 'Super catadores';
+    }
+    if((cm >= 12) && (cm <= 60)){
+        bmi = 'Medios catadores';
+    }
+    if(cm < 12){
+        bmi = 'No catadores';
+    }
+    console.log(cm);
+    
+    conexion.query("SELECT id FROM calificacion_umbral WHERE id_usuario = ? AND id_umbral = 1", id, (err, rows) => {
+        if(err) throw err;
+        if(rows[0]==null)
+        {
+            conexion.query("INSERT INTO calificacion_umbral set ?",{
+                id_usuario: id,
+                id_umbral : '1', 
+                calificacion: cm,
+                BMI: bmi },(err,result)=>{
+                console.log(err)
+            });
+        }
+        res.render('./rango/rangoMedio',{
+            pageTitle:'Prueba',
+            video: id,
+        });
     });
 };
 
-exports.getRange3 = (req,res)=>{
-    res.render('./rango/rangoMedioAlto',{
-        pageTitle:"Muestra Rango",
+exports.postRange2 = (req,res)=>{
+    const id = req.body.id;
+    cm = req.body.calificacion;
+    
+    if(cm > 60){
+        bmi = 'Super catadores';
+    }
+    if((cm >= 12) && (cm <= 60)){
+        bmi = 'Medios catadores';
+    }
+    if(cm < 12){
+        bmi = 'No catadores';
+    }
+    console.log(cm);
+    
+    conexion.query("SELECT id FROM calificacion_umbral WHERE id_usuario = ? AND id_umbral = 2", id, (err, rows) => {
+        if(err) throw err;
+        if(rows[0]==null)
+        {
+            conexion.query("INSERT INTO calificacion_umbral set ?",{
+                id_usuario: id,
+                id_umbral : '2', 
+                calificacion: cm,
+                BMI: bmi },(err,result)=>{
+                console.log(err)
+            });
+        }
+        res.render('./rango/rangoMedioAlto',{
+            pageTitle:'Prueba',
+            video: id,
+        });
+    });
+};
+
+exports.postRange3 = (req,res)=>{
+    const id = req.body.id;
+    cm = req.body.calificacion;
+    
+    if(cm > 60){
+        bmi = 'Super catadores';
+    }
+    if((cm >= 12) && (cm <= 60)){
+        bmi = 'Medios catadores';
+    }
+    if(cm < 12){
+        bmi = 'No catadores';
+    }
+    console.log(cm);
+    
+    conexion.query("SELECT id FROM calificacion_umbral WHERE id_usuario = ? AND id_umbral = 3", id, (err, rows) => {
+        if(err) throw err;
+        if(rows[0]==null)
+        {
+            conexion.query("INSERT INTO calificacion_umbral set ?",{
+                id_usuario: id,
+                id_umbral : '3', 
+                calificacion: cm,
+                BMI: bmi },(err,result)=>{
+                console.log(err)
+            });
+        }
+        res.redirect('./sustancia');
     });
 };
 
@@ -294,7 +386,7 @@ exports.getRange4 = (req,res)=>{
     });
 };
 
-exports.postRange = (req,res)=>{
+/*exports.postRange = (req,res)=>{
     const rango = req.body.calificacion;
     if(rango < 25){
         res.redirect('/rango4');
@@ -308,35 +400,35 @@ exports.postRange = (req,res)=>{
     if(rango > 75){
         res.redirect('/rango')
     }
-};
+};*/
 
 //PREFERENCIAS
 exports.getPreferencias = (req,res)=>{
     //const id = req.body.id;
-    console.log("pepe");
-    conexion.query("SELECT * FROM comida ORDER BY RAND() LIMIT 8", (err, rows) => {
+    conexion.query("SELECT * FROM listas", (err, rows) => {
         console.log(rows);
         res.render('./ejercicios/preferencias',{
             pageTitle:'Preferencias',
             platillos: rows,
-            id: (Math.random()*1000),
+            video: Math.floor(Math.random() * 10),
+            rnd: Math.floor(Math.random() * 2),
         });
     });
 };
 
 exports.postGuardarPreferencias = (req,res)=>{
     const id = req.body.id;
+    var body = JSON.parse(JSON.stringify(req.body));
     var obj = [];
-    obj.push(req.body.ID0.split(' '));
-    obj.push(req.body.ID1.split(' '));
-    obj.push(req.body.ID2.split(' '));
-    obj.push(req.body.ID3.split(' '));
-
+    for(var i in body) 
+        obj.push(body[i].split(' '));
+    obj.pop();
     for(let i=0; i<obj.length; i++){
         conexion.query("INSERT INTO gustos set ?",{
             id_usuario: id,
             id_gusto: obj[i][0], 
             id_no_gusto: obj[i][1],
+            id_lista: obj[i][2],
         });
     }
     res.redirect('/sustancia');

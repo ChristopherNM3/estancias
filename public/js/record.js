@@ -1,3 +1,4 @@
+  
 var arrayInput = new Array(); //Creacion del arreglo para asignarle nombre al video
 var inputsValues = document.getElementsByClassName('name');
 nameValues = [].map.call(inputsValues,function(dataInput){
@@ -64,4 +65,5 @@ function download(blod){
 }
 
 window.onload = video();
+
 

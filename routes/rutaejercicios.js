@@ -31,11 +31,12 @@ router.post('/sustancia8',controladorEjercicio.postMuestra17);
 router.post('/sustancia',controladorEjercicio.postMuestra18);
 
 //rango
-router.get('/rango',controladorEjercicio.getRange)
-router.get('/rango2',controladorEjercicio.getRange2);
-router.get('/rango3',controladorEjercicio.getRange3);
+router.post('/rango',controladorEjercicio.getRange)
+router.post('/rango1',controladorEjercicio.postRange1);
+router.post('/rango2',controladorEjercicio.postRange2);
+router.post('/rango3',controladorEjercicio.postRange3);
 router.get('/rango4',controladorEjercicio.getRange4);
-router.post('/rango',controladorEjercicio.postRange);
+//router.post('/rango',controladorEjercicio.postRange);
 
 //preferencias
 router.get('/preferencias',controladorEjercicio.getPreferencias);

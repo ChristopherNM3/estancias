@@ -1,30 +1,39 @@
 <%- include('../includes/header.ejs')%>}
 <link rel="stylesheet" href="./css/preferencias.css">
 <br>
-<body class="centrar">
+<body class="centrar" onload='javascript:IniciarVideo()'>
     <div class="container">
+        <video autoplay id='video' style="display: none;"></video>
+        <div class="auto-mx" style="margin: 25px; font-size: 40px;"><h4>¿Qué prefieres?</h4></div>
         <div class="flex-container">
             <div id="div1" style="text-align: right; margin-right: 15px;">
-                <img id="img1" src="./imagenes/comida/<%=platillos[0].id%>.jpg" class="efecto" onclick="siguienteImagen('<%=platillos[0].id%>', '<%=platillos[1].id%>', 'img1', 'img2', '0')">
+                <img id="img1" src="./imagenes/comida/<%if(rnd==0){%><%=platillos[0].lista_1%><%} else {%><%=platillos[0].lista_2%><%}%>.jpg" class="efecto" onclick="escogerImagen('img1', 'img2', 0)">
             </div>
             <div id="div2" style="text-align: left; margin-left: 15px;">
-                <img id="img2" src="./imagenes/comida/<%=platillos[1].id%>.jpg" class="efecto" onclick="siguienteImagen('<%=platillos[1].id%>', '<%=platillos[0].id%>', 'img2', 'img1', 0)">
+                <img id="img2" src="./imagenes/comida/<%if(rnd==1){%><%=platillos[0].lista_1%><%} else {%><%=platillos[0].lista_2%><%}%>.jpg" class="efecto" onclick="escogerImagen('img2', 'img1', 0)">
             </div>
         </div>
         <div  style="margin: 15px; align-items: flex-end;">
             <form action="/guardar-preferencias" method="POST">
                 <div>
-                    <%var cont = 0;%>
-                    <% for(var i = 0; i<platillos.length/2; i++){ %>
-                        <input class="radio" type="radio" name="seccion" onclick="cambiarImagenes('<%=platillos[cont].id%>', '<%=platillos[cont+1].id%>', <%=i%>)" <%if(i==0){%>checked<%}%>>
-                        <input type="hidden" name="ID<%=i%>" id="ID<%=i%>" value="" >
-                        <%cont += 2%>
+                    <% for(var i = 0; i<platillos.length; i++){ %>
+                        <svg id="C<%=i%>" version="1.1" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" <%if(i==0){%>fill="#1D82F7"<%} else {%>fill="#474B4D"<%}%>/></svg>
+                        <%if(rnd==0){%>
+                            <input type="hidden" name="ID<%=i%>" id="ID<%=i%>" value="<%=platillos[i].lista_1%> <%=platillos[i].lista_2%> <%=platillos[i].id%>" > 
+                        <%} else {%>
+                            <input type="hidden" name="ID<%=i%>" id="ID<%=i%>" value="<%=platillos[i].lista_2%> <%=platillos[i].lista_1%> <%=platillos[i].id%>" >
+                        <%}%>
+                        <%rnd = Math.floor(Math.random() * 2)%>
                     <%}%>
-                    <input type="hidden" value="<%=id%>" name="id" id="sujeto">
+                    <input type="hidden" value="<%=video%>" class="name" name="id" id="sujeto">
+                    <input type="hidden" value="1 - Preferencias" class="name" id="muestra">
                 </div> 
-                <div style="margin-top: 15px" id="boton" ></div>
+                <div style="margin-top: 15px;" id="boton" >
+                    <button type="button" class="btn btn-primary efecto" style="font-size: 1.5rem; width: 75%" disabled>Siguiente</button>
+                </div>
             </form>
         </div>
     </div>
     <script src="./js/preferencias.js"></script>
+    <!-- <script src="../js/record.js"></script> -->
 </body>
