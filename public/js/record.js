@@ -23,7 +23,6 @@ function record(stream){
         mimetype:'video/mp4;condecs=h264'
     });
 
-    var estado = mediaRecorder.state;
     mediaRecorder.start();
     mediaRecorder.ondataavailable = function(e){
         //console.log(e.data);
@@ -39,10 +38,8 @@ function record(stream){
     }
 
     document.querySelector('#boton').addEventListener('click',function(ev){
-        if(mediaRecorder.state==estado){
-            mediaRecorder.start();
-        }
         mediaRecorder.stop();
+        mediaRecorder.start();
     })
 }
 

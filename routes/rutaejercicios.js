@@ -33,6 +33,8 @@ router.post('/sustancia',controladorEjercicio.postMuestra18);
 router.get('/preferencias',controladorEjercicio.getPreferencias);
 router.post('/guardar-preferencias',controladorEjercicio.postGuardarPreferencias);
 
+router.post('/estimulos',controladorEjercicio.postEstimulos);
+
 
 
 module.exports = router;

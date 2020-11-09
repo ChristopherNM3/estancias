@@ -26,7 +26,7 @@
     <br>
     <div class="container">
         <div class="row">
-            <div class="mx-auto">
+            <div class="mx-auto" style="text-align: center;">
                 <!--<a href="/sustancia1">
                     <input type="hidden" name="id" value="<%=usuario[0].id_usuario%>">
                     <button class="btn btn-primary" type="button">Comenzar</button>
@@ -34,6 +34,10 @@
                 <form class="needs-validation" action="/sustancia1" method="POST" novalidate>
                     <input type="hidden" name="id" value="<%=usuario[0].id_usuario%>">
                     <button class="btn btn-primary" type="submit">Comenzar</button>
+                </form>
+                <form class="needs-validation" action="/estimulos" method="POST" novalidate>
+                    <input type="hidden" name="id" value="<%=usuario[0].id_usuario%>">
+                    <button class="btn btn-primary" type="submit">Estimulacion dulce</button>
                 </form>
             </div>
         </div>
