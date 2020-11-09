@@ -303,7 +303,6 @@ exports.postMuestra18 = (req,res)=>{
 exports.getPreferencias = (req,res)=>{
     //const id = req.body.id;
     conexion.query("SELECT * FROM listas", (err, rows) => {
-        console.log(rows);
         res.render('./ejercicios/preferencias',{
             pageTitle:'Preferencias',
             platillos: rows,
@@ -329,4 +328,12 @@ exports.postGuardarPreferencias = (req,res)=>{
         });
     }
     res.redirect('/sustancia');
+};
+
+exports.postEstimulos = (req,res)=>{
+    const id = req.body.id;
+    res.render('./ejercicios/estimulos',{
+        pageTitle:'Estimulos',
+        video: id,
+    });
 };
