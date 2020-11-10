@@ -1,0 +1,29 @@
+<%- include('./includes/header.ejs')%>
+<link rel="stylesheet" href="/main/main.css">
+<body>
+    <div class="row">
+        <div class="card col-md-4 col-10" style="height: 18rem; display: block; margin-left: auto; margin-right: auto; margin-top: 7rem;">
+            <div class="card-body">
+                <div class="row">
+                    <br><br>
+                    <a href="/registro" class="col-12">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" style="font-size: 15px;">PRIMERA VEZ</button>
+                    </a>
+                    <form action="/ingresar" method="POST" class="col-12">
+                        <br><br>
+                        <b style="font-size: 15px;">TENGO UN NUMERO</b>
+                        <div class="">
+                            <input type="text" name="numero" class="form-control" placeholder="ingrese numero" value="">
+                        </div>
+                        <br><br>
+                        <div class="" style="margin-left:10rem;">
+                            <button type="submit" class="btn btn-primary" style="font-size: 15px; ">Aceptar</button>
+                        </div>
+                    </form>
+                </div>
+                <br><br>
+            </div>
+        </div>
+    
+    </div>
+</body>

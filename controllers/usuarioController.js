@@ -7,6 +7,25 @@ exports.getUsuario = (req,res) =>{
     });
 };
 
+exports.getLogin = (req,res) =>{
+    res.render('./login',{
+        pageTitle:'Login',
+    });
+};
+
+exports.postIngresar =(req,res)=>{
+    const numero = req.body.numero;
+    console.log(numero);
+    conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",numero, (err,result)=>{
+        console.log(result);
+        res.render('./main',{
+            pageTitle:'Main',
+            usuario:result,
+        });
+
+    });
+}
+
 //Introduce el usuario nuevo y redirige a main
 exports.postUsuario = (req,res)=>{
     var alturaimc = req.body.altura;
@@ -28,13 +47,22 @@ exports.postUsuario = (req,res)=>{
     });
     conexion.query('SELECT * FROM usuario ORDER BY id_usuario DESC LIMIT 1', (err,result)=>{
         //console.log(result);
-        res.render('./main',{
-            pageTitle:'Main',
+        res.render('./vistaNumero',{
+            pageTitle:'Numero',
             usuario: result,
             //confirmar: "TRUE"
         });
     });
 };
+
+exports.postMain = (req,res)=>{
+    const id = req.body.id;
+    console.log(id);
+    res.render('./main',{
+        pageTitle:"Main",
+        usuario:id
+    })
+}
 
 //Prueba para actualizar un estado y que se cierre las respuestas de ese usuario
 exports.postReiniciarUsuario = (req,res)=>{
