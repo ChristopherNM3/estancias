@@ -6,7 +6,7 @@ module.exports = () => {
     return mysql.createConnection({
         host: 'localhost', //Direccion de la BD
         user: 'root',
-        password: '',
+        password: 'pack123',
         database: 'estancia' //Nombre de la BD
     });
 };

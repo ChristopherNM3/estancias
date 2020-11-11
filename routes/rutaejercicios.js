@@ -42,4 +42,6 @@ router.get('/rango4',controladorEjercicio.getRange4);
 router.get('/preferencias',controladorEjercicio.getPreferencias);
 router.post('/guardar-preferencias',controladorEjercicio.postGuardarPreferencias);
 
+router.post('/estimulos',controladorEjercicio.postEstimulos);
+
 module.exports = router;

@@ -23,13 +23,20 @@ text-align: center;
 img {
     border-radius: 5%;
     cursor: pointer;
-    width: 70%;
+    width: 320px;
     margin: 3px;
+    margin-left: 9px;
+    margin-right: 9px;
 }
 input {
     width: 30px;
     cursor: pointer;
 }
+
+.efecto {
+    -webkit-transform:scale(1);
+}
+
 .efecto:hover {
     -webkit-transform:scale(1.05);
     transform:scale(1.05);
@@ -39,4 +46,46 @@ input {
     -webkit-transform:scale(1.50);
     transform:scale(1.50);
     transition: all 0.2s;
+}
+
+.caja { 
+    position: relative; 
+    height: 100%; 
+    width: 100%; 
+} 
+
+.texto { 
+    position: absolute; 
+    color: white; 
+    font-size: 80px;
+    font-weight: bold; 
+    cursor: pointer;
+}
+
+.pregunta{
+    margin-bottom: 10px; 
+    margin-left: 10%; 
+    margin-right: 10%;
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.div{
+    border: 3px red solid;
+}
+
+.center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    width: min-content;
 }

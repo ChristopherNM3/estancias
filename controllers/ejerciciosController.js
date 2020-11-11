@@ -1,5 +1,6 @@
 //Controladores para llevar a los diferentes ejercicios y preguntas.
 const dbConnection = require('../models/dbConnection');
+const { post } = require('../routes/rutaejercicios');
 const conexion = dbConnection();
 var bmi;
 
@@ -406,7 +407,6 @@ exports.getRange4 = (req,res)=>{
 exports.getPreferencias = (req,res)=>{
     //const id = req.body.id;
     conexion.query("SELECT * FROM listas", (err, rows) => {
-        console.log(rows);
         res.render('./ejercicios/preferencias',{
             pageTitle:'Preferencias',
             platillos: rows,
@@ -433,3 +433,100 @@ exports.postGuardarPreferencias = (req,res)=>{
     }
     res.redirect('/sustancia');
 };
+
+exports.postEstimulos = (req,res)=>{
+    const id = req.body.id;
+    const respuesta = req.body.respuesta;
+    const contador = req.body.contador;
+    
+    var cambio_lista = "false";
+    var cambio = "indefinido";
+
+    if(respuesta == false){
+        cambio_lista = "true";
+        cambio = "derecha";
+    }
+    
+    conexion.query("SELECT * FROM calificacion_estimulo WHERE id_usuario = ? ",id,(err,rows)=>{
+        if(rows[0] == null){
+            if(respuesta != undefined){
+                conexion.query("INSERT INTO calificacion_estimulo set ?",{
+                    id_usuario: id,
+                    respuesta: respuesta,
+                    direccion: cambio,
+                    lista: 3,
+                    cambio_lista: cambio_lista
+                });
+            }
+            conexion.query("SELECT * FROM lista", (err, rows) => {
+                const medio = Math.round((rows.length/2)-1);
+                lista = [rows[medio].dulceMas, rows[medio].dulceMenos, rows[medio].id_lista];//esta es la lista que se va a pasar la primera vez, por eso muestra el valor de enmedio.
+                res.render('./ejercicios/estimulos',{
+                    pageTitle:'Estimulos',
+                    video: id,
+                    lista: lista,
+                });
+            });
+        }else{
+            conexion.query("SELECT COUNT(*) FROM calificacion_estimulo WHERE id_usuario = ?",id,(err,ultimo)=>{
+                const ultimatum = Math.round((ultimo.length)-1);
+                if(rows[ultimatum].cambio_lista == "true"){
+                    if(rows[ultimatum].direccion == "izquierda"){
+                        console.log("Mandar mas fuerte");
+                    }else{
+                        console.log("Mandar una menos debil");
+                    }
+                } 
+
+                var cambio_lista = false;
+
+                if(rows[ultimatum].direccion=='indefinido' && respuesta == true || respuesta == false){
+                    cambio_lista = "true";
+                }
+
+                var direccion = "indefinido";
+
+                conexion.query("SELECT * FROM lista ORDER BY id_lista DESC LIMIT 1",(err,listaUltimo)=>{
+                    if(respuesta == false && req.body.lista != listaUltimo){
+                        direccion = "derecha";
+                    }
+                    conexion.query("SELECT * FROM lista ORDER BY id_lista ASC LIMIT 1",(err,listaPrimero)=>{
+                        if(respuesta == true && req.body.lista != listaPrimero && rows[ultimatum].direccion=="indefinido"){
+                            direccion = "izquierda";
+                        }
+
+                        if(respuesta == false && req.body.lista == listaUltimo || respuesta == true && req.body.lista == listaPrimero && rows[ultimatum].direccion=="indefinido"){
+                            direccion = "ninguna";
+                        }
+                        conexion.query("INSERT INTO calificacion_estimulo set ?",id,{
+                            id_user: id,
+                            direccion: direccion,
+                            respuesta: respuesta,
+                            lista: req.body.lista,
+                            cambio_lista: cambio_lista,
+                        });
+                    });
+                });
+            });
+            res.render('./ejercicios/estimulos',{
+                pageTitle:'Estimulos',
+                video: id,
+            });
+            /*res.render('./ejercicios/estimulos',{
+                pageTitle:'Estimulos',
+                video: id,
+                lista: lista,
+            });*/
+        }
+    })
+};
+
+/*if(contador == 0){
+        console.log("Es igual a 0");
+        vacito1 = Math.floor(Math.random()*(20-1)+1);
+        vacito2 = Math.floor(Math.random()*(60-30)+30);
+    } else if(contador != 0){
+
+        console.log("El contador va ",+contador);
+    }*/
+
