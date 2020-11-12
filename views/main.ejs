@@ -35,9 +35,17 @@
                     <input type="hidden" name="id" value="<%=usuario[0].id_usuario%>">
                     <button class="btn btn-primary" type="submit">Comenzar</button>
                 </form>
-                <form class="needs-validation" action="/estimulos" method="POST" novalidate>
+                <form class="needs-validation" action="/rango" method="POST" novalidate>
                     <input type="hidden" name="id" value="<%=usuario[0].id_usuario%>">
-                    <button class="btn btn-primary" type="submit">Estimulacion dulce</button>
+                    <button class="btn btn-primary" type="submit">Otro nombre</button>
+                </form>
+                <form class="needs-validation" action="/preferencias" method="POST" novalidate>
+                    <input type="hidden" name="id" value="<%=usuario[0].id_usuario%>">
+                    <button class="btn btn-primary" type="submit">Preferencias</button>
+                </form>
+                <form class="needs-validation" action="/umbral" method="POST" novalidate>
+                    <input type="hidden" name="id" value="<%=usuario[0].id_usuario%>">
+                    <button class="btn btn-primary" type="submit">Umbral</button>
                 </form>
             </div>
         </div>

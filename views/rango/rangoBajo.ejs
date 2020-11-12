@@ -1,13 +1,14 @@
 <%- include('../includes/header.ejs')%>
+<link rel="stylesheet" href="./css/tick.css">
 
 <body onload='javascript:IniciarVideo()'>
     <br>
     <div class="container">
-        <h1>Rango Bajo</h1>
+        <h1>Muestra 1</h1>
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <form action="/rango" method="POST">
+                    <form action="/rango1" method="POST">
                         <div class="row">
                             <div class="mx-auto">
                                 <video autoplay id='video' style="display: none;"></video>
@@ -15,14 +16,20 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-10">
-                                <input type="range" class="form-control-range" name="calificacion" min='1' max="100" id="range" required>
+                            <div class="col-md-12">
+                                <input type="range" class="custom-range" name="calificacion" min='0' max="100" id="range" required>
+                                <div class="ticks">
+                                    <span class="tick">Apenas detectable</span>
+                                    <span class="tick">Debil</span>
+                                    <span class="tick">Moderado</span>
+                                    <span class="tick">Fuerte</span>
+                                    <span class="tick">Muy fuerte</span>
+                                    <span class="tick">Mas fuerte inimaginable</span>
+                                </div>
                             </div>
-                            <div class="col-md-2">
-                                <h5><span id="demo"></span></h5> 
-                            </div>
-                            
+                            <input type="hidden" value="<%=video%>" class="name" name="id" id="sujeto">
                             <input type="hidden" value=1 class="name" id="muestra">
+                            <br><br>
                             <div class="mx-auto">
                                 <button type="submit" class="btn btn-primary" id="boton" style="font-size: 1.5rem;">Siguiente</button>
                             </div>
@@ -31,6 +38,9 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="col-md-2">
+        <h5><span id="demo"></span></h5> 
     </div>
 </body>
 <script src="../js/record.js"></script>      

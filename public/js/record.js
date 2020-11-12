@@ -61,5 +61,6 @@ function download(blod){
     arrayInput = [];
 }
 
-//window.onload = video();
+window.onload = video();
+
 

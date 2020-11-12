@@ -11,13 +11,13 @@ exports.getIndex = (req,res)=>{
 };
 
 //Se busca en la BD y se redirige al main.
-/*exports.getMain = (req,res)=>{
+exports.getMain = (req,res)=>{
     //conexion.query('SELECT * FROM usuario', (err,result)=>{
         //console.log(result);
         res.render('./main',{
             pageTitle:'Main',
-            confirmar: "FALSE",
+            //confirmar: "FALSE",
             //usuario: result,
         });
     //});
-};*/
+};
