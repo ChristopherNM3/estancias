@@ -388,14 +388,12 @@ exports.postUmbral = (req,res)=>{
 
                 var cambio_lista = false;
                 var cambio = "indefinido";
-                var temp_posicion;
+                var posicion;
 
                 if(consulta[0]==null){
-                    temp_posicion = posicion;
                     if(!respuesta){
                         cambio_lista = true;
                         cambio = "derecha";
-                        posicion++;
                     } 
                 } else {
                     var ultimo = (consulta.length - 1);
@@ -409,18 +407,16 @@ exports.postUmbral = (req,res)=>{
                             posicion = consulta[ultimo].lista + 1;
                     }
 
-                    temp_posicion = posicion;
-
-                    if(consulta[ultimo].direccion=="indefinido" && respuesta && temp_posicion || !respuesta && temp_posicion != (lista.length-1))
+                    if(consulta[ultimo].direccion=="indefinido" && respuesta && posicion || !respuesta && posicion != (lista.length-1))
                         cambio_lista = true;
 
-                    if(!respuesta && temp_posicion != (lista.length-1))
+                    if(!respuesta && posicion != (lista.length-1))
                         cambio = "derecha";
 
-                    if(respuesta && temp_posicion != 0 && consulta[ultimo].direccion=="indefinido")
+                    if(respuesta && posicion != 0 && consulta[ultimo].direccion=="indefinido")
                         cambio = "izquierda";
                     
-                    if(!respuesta && temp_posicion == (lista.length-1) || respuesta && temp_posicion == 0 && consulta[ultimo].direccion=="indefinido")
+                    if(!respuesta && posicion == (lista.length-1) || respuesta && posicion == 0 && consulta[ultimo].direccion=="indefinido")
                         cambio = "ninguna";
 
                     if(cambio!=vueltas && cambio!="ninguna" && cambio!="indefinido"|| cambio=="ninguna")
@@ -432,7 +428,7 @@ exports.postUmbral = (req,res)=>{
                     prueba: numPrueba,
                     respuesta: respuesta,
                     direccion: cambio,
-                    lista: temp_posicion,
+                    lista: posicion,
                     cambio_lista: cambio_lista,
                 });
             }
@@ -460,11 +456,11 @@ exports.getUmbral = (req,res)=> {
             res.redirect('/');
         conexion.query("SELECT * FROM calificacion_umbrales WHERE id_usuario = ? ORDER BY prueba DESC LIMIT 1 ",id,(err, consulta)=>{
             var posicion = 1;
-            var prueba = 1 
+            var prueba = 1;
             if(consulta[0]!=null){
                 posicion = consulta[0].lista; 
                 posicion = (consulta[0].direccion=="izquierda")? posicion-1 : ((consulta[0].direccion=="derecha")? posicion+1: posicion);
-                prueba = consulta[0].prueba;
+                prueba = consulta[0].prueba + 1;
             }
             conexion.query("SELECT * FROM lista", (err, lista) => {
                 var obj = [lista[posicion].dulceMas, lista[posicion].dulceMenos, prueba];
