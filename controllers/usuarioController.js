@@ -15,7 +15,6 @@ exports.getLogin = (req,res) =>{
 
 exports.postIngresar =(req,res)=>{
     const numero = req.body.numero;
-    console.log(numero);
     conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",numero, (err,result)=>{
         if(result[0]==null)
             res.redirect('/');
@@ -23,7 +22,6 @@ exports.postIngresar =(req,res)=>{
             pageTitle:'Main',
             usuario:result,
         });
-
     });
 }
 

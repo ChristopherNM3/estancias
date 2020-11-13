@@ -414,22 +414,17 @@ exports.postUmbral = (req,res)=>{
                     if(consulta[ultimo].direccion=="indefinido" && respuesta && temp_posicion || !respuesta && temp_posicion != (lista.length-1))
                         cambio_lista = true;
 
-                    if(!respuesta && temp_posicion != (lista.length-1)){
+                    if(!respuesta && temp_posicion != (lista.length-1))
                         cambio = "derecha";
-                        posicion++;
-                    }
 
-                    if(respuesta && temp_posicion != 0 && consulta[ultimo].direccion=="indefinido"){
+                    if(respuesta && temp_posicion != 0 && consulta[ultimo].direccion=="indefinido")
                         cambio = "izquierda";
-                        posicion--;
-                    }
                     
                     if(!respuesta && temp_posicion == (lista.length-1) || respuesta && temp_posicion == 0 && consulta[ultimo].direccion=="indefinido")
                         cambio = "ninguna";
 
-                    if(cambio!=vueltas && cambio!="ninguna" && cambio!="indefinido"|| cambio=="ninguna"){
+                    if(cambio!=vueltas && cambio!="ninguna" && cambio!="indefinido"|| cambio=="ninguna")
                         numVueltas++;
-                    }
                     
                 }
                 conexion.query("INSERT INTO calificacion_umbrales set ?",{
@@ -440,10 +435,9 @@ exports.postUmbral = (req,res)=>{
                     lista: temp_posicion,
                     cambio_lista: cambio_lista,
                 });
-                numPrueba++;
             }
             
-            if(numVueltas == 7){
+            if(numVueltas >= 7){
                 conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",id, (err,result)=>{
                     res.render('./main',{
                         pageTitle:'Main',
@@ -451,14 +445,35 @@ exports.postUmbral = (req,res)=>{
                     });
                 });
             } else {
-                var obj = [lista[posicion].dulceMas, lista[posicion].dulceMenos, numPrueba];
+                res.redirect('/umbral?ID=' + id +','+ numVueltas);
+            }
+        });
+    });
+};
+
+
+exports.getUmbral = (req,res)=> {
+    var id = req.query.ID.split(',');
+    id = id[0];
+    conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",id, (err,result)=>{
+        if(result[0]==null)
+            res.redirect('/');
+        conexion.query("SELECT * FROM calificacion_umbrales WHERE id_usuario = ? ORDER BY prueba DESC LIMIT 1 ",id,(err, consulta)=>{
+            var posicion = 1;
+            var prueba = 1 
+            if(consulta[0]!=null){
+                posicion = consulta[0].lista; 
+                posicion = (consulta[0].direccion=="izquierda")? posicion-1 : ((consulta[0].direccion=="derecha")? posicion+1: posicion);
+                prueba = consulta[0].prueba;
+            }
+            conexion.query("SELECT * FROM lista", (err, lista) => {
+                var obj = [lista[posicion].dulceMas, lista[posicion].dulceMenos, prueba];
                 res.render('./ejercicios/umbral',{
                     pageTitle:'Estimulos',
                     video: id,
                     lista: obj,
-                    numVueltas: numVueltas,
                 });
-            }
+            });
         });
     });
 };
