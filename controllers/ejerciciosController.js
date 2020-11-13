@@ -455,14 +455,14 @@ exports.getUmbral = (req,res)=> {
         if(result[0]==null)
             res.redirect('/');
         conexion.query("SELECT * FROM calificacion_umbrales WHERE id_usuario = ? ORDER BY prueba DESC LIMIT 1 ",id,(err, consulta)=>{
-            var posicion = 1;
-            var prueba = 1;
-            if(consulta[0]!=null){
-                posicion = consulta[0].lista; 
-                posicion = (consulta[0].direccion=="izquierda")? posicion-1 : ((consulta[0].direccion=="derecha")? posicion+1: posicion);
-                prueba = consulta[0].prueba + 1;
-            }
             conexion.query("SELECT * FROM lista", (err, lista) => {
+                var posicion = parseInt(lista.length/2);
+                var prueba = 1;
+                if(consulta[0]!=null){
+                    posicion = consulta[0].lista; 
+                    posicion = (consulta[0].direccion=="izquierda")? posicion-1 : ((consulta[0].direccion=="derecha")? posicion+1: posicion);
+                    prueba = consulta[0].prueba + 1;
+                }
                 var obj = [lista[posicion].dulceMas, lista[posicion].dulceMenos, prueba];
                 res.render('./ejercicios/umbral',{
                     pageTitle:'Estimulos',
