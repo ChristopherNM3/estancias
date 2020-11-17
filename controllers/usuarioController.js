@@ -15,7 +15,6 @@ exports.getLogin = (req,res) =>{
 
 exports.postIngresar =(req,res)=>{
     const numero = req.body.numero;
-    console.log(numero);
     conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",numero, (err,result)=>{
         if(result[0]==null)
             res.redirect('/');
@@ -34,25 +33,46 @@ exports.postUsuario = (req,res)=>{
     var imc = pesoimc/(alturaimc*alturaimc);
     console.log(imc);
 
-    const {nombre,edad,peso,altura,cintura} = req.body;
-    conexion.query("INSERT INTO usuario SET ?",{
-        nombre,
-        edad,
-        peso,
-        altura,
-        cintura,
-        imc
-    },(err,result)=>{
-        console.log(err)
-        //res.redirect('/main');
-    });
-    conexion.query('SELECT * FROM usuario ORDER BY id_usuario DESC LIMIT 1', (err,result)=>{
-        res.render('./vistaNumero',{
-            pageTitle:'Numero',
-            usuario: result,
-            //confirmar: "TRUE"
+    const {nombre,edad,peso,altura,cintura,id} = req.body;
+    if(req.body.id == "") {
+        console.log("entro en el if")
+        conexion.query("INSERT INTO usuario SET ?",{
+            nombre,
+            edad,
+            peso,
+            altura,
+            cintura,
+            imc,
+            id_origen:null
+        },(err,result)=>{
+            console.log(err)
         });
-    });
+        conexion.query('SELECT * FROM usuario ORDER BY id_usuario DESC LIMIT 1', (err,result)=>{
+            res.render('./vistaNumero',{
+                pageTitle:'Numero',
+                usuario: result,
+            });
+        });
+    }else{
+        console.log("Entro en el else")
+        conexion.query("INSERT INTO usuario SET ?",{
+            nombre,
+            edad,
+            peso,
+            altura,
+            cintura,
+            imc,
+            id_origen:id
+        },(err,result)=>{
+            console.log(err)
+        });
+        conexion.query('SELECT * FROM usuario ORDER BY id_usuario DESC LIMIT 1', (err,result)=>{
+            res.render('./main',{
+                pageTitle:'Main',
+                usuario: result,
+            });
+        });
+    }
 };
 
 exports.postMain = (req,res)=>{

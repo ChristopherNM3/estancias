@@ -300,6 +300,29 @@ exports.postGuardarPreferencias = (req,res)=>{
     });
 };
 
+exports.postGuardarPreferencias = (req,res)=>{
+    const id = req.body.id;
+    var body = JSON.parse(JSON.stringify(req.body));
+    var obj = [];
+    for(var i in body) 
+        obj.push(body[i].split(' '));
+    obj.pop();
+    for(let i=0; i<obj.length; i++){
+        conexion.query("INSERT INTO calificacion_preferencias set ?",{
+            id_usuario: id,
+            id_gusto: obj[i][0], 
+            id_no_gusto: obj[i][1],
+            id_lista: obj[i][2],
+        });
+    }
+    conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",id, (err,result)=>{
+        res.render('./main',{
+            pageTitle:'Main',
+            usuario: result,
+        });
+    });
+};
+
 exports.postUmbral = (req,res)=>{
     const id = parseInt(req.body.id);
     const respuesta = (req.body.respuesta=="false")? false: true;
@@ -322,14 +345,12 @@ exports.postUmbral = (req,res)=>{
 
                 var cambio_lista = false;
                 var cambio = "indefinido";
-                var temp_posicion;
+                var posicion;
 
                 if(consulta[0]==null){
-                    temp_posicion = posicion;
                     if(!respuesta){
                         cambio_lista = true;
                         cambio = "derecha";
-                        posicion++;
                     } 
                 } else {
                     var ultimo = (consulta.length - 1);
@@ -343,41 +364,35 @@ exports.postUmbral = (req,res)=>{
                             posicion = consulta[ultimo].lista + 1;
                     }
 
-                    temp_posicion = posicion;
-
-                    if(consulta[ultimo].direccion=="indefinido" && respuesta && temp_posicion || !respuesta && temp_posicion != (lista.length-1))
+                    if(consulta[ultimo].direccion=="indefinido" && respuesta && posicion || !respuesta && posicion != (lista.length-1))
                         cambio_lista = true;
 
-                    if(!respuesta && temp_posicion != (lista.length-1)){
+                    if(!respuesta && posicion != (lista.length-1))
                         cambio = "derecha";
-                        posicion++;
-                    }
 
-                    if(respuesta && temp_posicion != 0 && consulta[ultimo].direccion=="indefinido"){
+                    if(respuesta && posicion != 0 && consulta[ultimo].direccion=="indefinido")
                         cambio = "izquierda";
-                        posicion--;
-                    }
                     
-                    if(!respuesta && temp_posicion == (lista.length-1) || respuesta && temp_posicion == 0 && consulta[ultimo].direccion=="indefinido")
+                    if(!respuesta && posicion == (lista.length-1) || respuesta && posicion == 0 && consulta[ultimo].direccion=="indefinido")
                         cambio = "ninguna";
 
-                    if(cambio!=vueltas && cambio!="ninguna" && cambio!="indefinido"|| cambio=="ninguna"){
+                    if(cambio!=vueltas && cambio!="ninguna" && cambio!="indefinido"|| cambio=="ninguna")
                         numVueltas++;
-                    }
                     
                 }
-                conexion.query("INSERT INTO calificacion_umbrales set ?",{
-                    id_usuario: id,
-                    prueba: numPrueba,
-                    respuesta: respuesta,
-                    direccion: cambio,
-                    lista: temp_posicion,
-                    cambio_lista: cambio_lista,
-                });
-                numPrueba++;
+                if(numVueltas<=7){
+                    conexion.query("INSERT INTO calificacion_umbrales set ?",{
+                        id_usuario: id,
+                        prueba: numPrueba,
+                        respuesta: respuesta,
+                        direccion: cambio,
+                        lista: posicion,
+                        cambio_lista: cambio_lista,
+                    });
+                }
             }
             
-            if(numVueltas == 7){
+            if(numVueltas >= 7){
                 conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",id, (err,result)=>{
                     res.render('./main',{
                         pageTitle:'Main',
@@ -385,14 +400,35 @@ exports.postUmbral = (req,res)=>{
                     });
                 });
             } else {
-                var obj = [lista[posicion].dulceMas, lista[posicion].dulceMenos, numPrueba];
+                res.redirect('/umbral?ID=' + id +','+ numVueltas);
+            }
+        });
+    });
+};
+
+
+exports.getUmbral = (req,res)=> {
+    var id = req.query.ID.split(',');
+    id = id[0];
+    conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",id, (err,result)=>{
+        if(result[0]==null)
+            res.redirect('/');
+        conexion.query("SELECT * FROM calificacion_umbrales WHERE id_usuario = ? ORDER BY prueba DESC LIMIT 1 ",id,(err, consulta)=>{
+            conexion.query("SELECT * FROM lista", (err, lista) => {
+                var posicion = parseInt(lista.length/2);
+                var prueba = 1;
+                if(consulta[0]!=null){
+                    posicion = consulta[0].lista; 
+                    posicion = (consulta[0].direccion=="izquierda")? posicion-1 : ((consulta[0].direccion=="derecha")? posicion+1: posicion);
+                    prueba = consulta[0].prueba + 1;
+                }
+                var obj = [lista[posicion].dulceMas, lista[posicion].dulceMenos, prueba];
                 res.render('./ejercicios/umbral',{
                     pageTitle:'Estimulos',
                     video: id,
                     lista: obj,
-                    numVueltas: numVueltas,
                 });
-            }
+            });
         });
     });
 };
