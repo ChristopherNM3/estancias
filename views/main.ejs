@@ -27,24 +27,24 @@
     <div class="container">
         <div class="row">
             <div class="mx-auto" style="text-align: center;">
-                <!--<a href="/sustancia1">
-                    <input type="hidden" name="id" value="<%=usuario[0].id_usuario%>">
-                    <button class="btn btn-primary" type="button">Comenzar</button>
-                </a>-->
                 <form class="needs-validation" action="/sustancia1" method="POST" novalidate>
-                    <input type="hidden" name="id" value="<%=usuario[0].id_usuario%>">
-                    <button class="btn btn-primary" type="submit">Comenzar</button>
+                    <input type="hidden" name="id" value="<%=usuario%>">
+                    <input type="hidden" name="visita" value="<%=visita%>">
+                    <button class="btn btn-primary" type="submit">Intensidad</button>
                 </form>
-                <form class="needs-validation" action="/rango" method="POST" novalidate>
-                    <input type="hidden" name="id" value="<%=usuario[0].id_usuario%>">
-                    <button class="btn btn-primary" type="submit">Otro nombre</button>
+                <form class="needs-validation" action="/estimulacion" method="POST" novalidate>
+                    <input type="hidden" name="id" value="<%=usuario%>">
+                    <input type="hidden" name="visita" value="<%=visita%>">
+                    <button class="btn btn-primary" type="submit">Estimulacion</button>
                 </form>
                 <form class="needs-validation" action="/preferencias" method="POST" novalidate>
-                    <input type="hidden" name="id" value="<%=usuario[0].id_usuario%>">
+                    <input type="hidden" name="id" value="<%=usuario%>">
+                    <input type="hidden" name="visita" value="<%=visita%>">
                     <button class="btn btn-primary" type="submit">Preferencias</button>
                 </form>
                 <form class="needs-validation" action="/umbral" method="POST" novalidate>
-                    <input type="hidden" name="id" value="<%=usuario[0].id_usuario%>">
+                    <input type="hidden" name="id" value="<%=usuario%>">
+                    <input type="hidden" name="visita" value="<%=visita%>">
                     <button class="btn btn-primary" type="submit">Umbral</button>
                 </form>
             </div>

@@ -3,6 +3,7 @@ const dbConnection = require('../models/dbConnection');
 const { post } = require('../routes/rutaejercicios');
 const conexion = dbConnection();
 var bmi;
+const mysql = require('mysql');
 
 exports.getMuestra10 = (req,res) =>{
     res.render('./ejercicios/sustancia10',{
@@ -23,13 +24,13 @@ exports.postMuestra11 = (req,res)=>{
     cm = req.body.calificacion;
     console.log(cm);
     
-    conexion.query("SELECT id FROM calificacion_muestras WHERE id_usuario = ? AND id_muestras = 1", id, (err, rows) => {
+    conexion.query("SELECT id FROM calificacion_intensidad WHERE id_usuario = ? AND id_intensidad = 1", id, (err, rows) => {
         if(err) throw err;
         if(rows[0]==null)
         {
-            conexion.query("INSERT INTO calificacion_muestras set ?",{
+            conexion.query("INSERT INTO calificacion_intensidad set ?",{
                 id_usuario: id,
-                id_muestras : '1', 
+                id_intensidad : '1', 
                 calificacion: cm },(err,result)=>{
                 console.log(err)
             });
@@ -46,13 +47,13 @@ exports.postMuestra12 = (req,res)=>{
     cm = req.body.calificacion;
     console.log(cm);
     
-    conexion.query("SELECT id FROM calificacion_muestras WHERE id_usuario = ? AND id_muestras = 2", id, (err, rows) => {
+    conexion.query("SELECT id FROM calificacion_intensidad WHERE id_usuario = ? AND id_intensidad = 2", id, (err, rows) => {
         if(err) throw err;
         if(rows[0]==null)
         {
-            conexion.query("INSERT INTO calificacion_muestras set ?",{
+            conexion.query("INSERT INTO calificacion_intensidad set ?",{
                 id_usuario: id,
-                id_muestras : '2', 
+                id_intensidad : '2', 
                 calificacion: cm },(err,result)=>{
                 console.log(err)
             });
@@ -69,13 +70,13 @@ exports.postMuestra13 = (req,res)=>{
     cm = req.body.calificacion;
     console.log(cm);
     
-    conexion.query("SELECT id FROM calificacion_muestras WHERE id_usuario = ? AND id_muestras = 3", id, (err, rows) => {
+    conexion.query("SELECT id FROM calificacion_intensidad WHERE id_usuario = ? AND id_intensidad = 3", id, (err, rows) => {
         if(err) throw err;
         if(rows[0]==null)
         {
-            conexion.query("INSERT INTO calificacion_muestras set ?",{
+            conexion.query("INSERT INTO calificacion_intensidad set ?",{
                 id_usuario: id,
-                id_muestras : '3', 
+                id_intensidad : '3', 
                 calificacion: cm },(err,result)=>{
                 console.log(err)
             });
@@ -92,13 +93,13 @@ exports.postMuestra14 = (req,res)=>{
     cm = req.body.calificacion;
     console.log(cm);
     
-    conexion.query("SELECT id FROM calificacion_muestras WHERE id_usuario = ? AND id_muestras = 4", id, (err, rows) => {
+    conexion.query("SELECT id FROM calificacion_intensidad WHERE id_usuario = ? AND id_intensidad = 4", id, (err, rows) => {
         if(err) throw err;
         if(rows[0]==null)
         {
-            conexion.query("INSERT INTO calificacion_muestras set ?",{
+            conexion.query("INSERT INTO calificacion_intensidad set ?",{
                 id_usuario: id,
-                id_muestras : '4', 
+                id_intensidad : '4', 
                 calificacion: cm },(err,result)=>{
                 console.log(err)
             });
@@ -115,13 +116,13 @@ exports.postMuestra15 = (req,res)=>{
     cm = req.body.calificacion;
     console.log(cm);
     
-    conexion.query("SELECT id FROM calificacion_muestras WHERE id_usuario = ? AND id_muestras = 5", id, (err, rows) => {
+    conexion.query("SELECT id FROM calificacion_intensidad WHERE id_usuario = ? AND id_intensidad = 5", id, (err, rows) => {
         if(err) throw err;
         if(rows[0]==null)
         {
-            conexion.query("INSERT INTO calificacion_muestras set ?",{
+            conexion.query("INSERT INTO calificacion_intensidad set ?",{
                 id_usuario: id,
-                id_muestras : '5', 
+                id_intensidad : '5', 
                 calificacion: cm },(err,result)=>{
                 console.log(err)
             });
@@ -138,13 +139,13 @@ exports.postMuestra16 = (req,res)=>{
     cm = req.body.calificacion;
     console.log(cm);
     
-    conexion.query("SELECT id FROM calificacion_muestras WHERE id_usuario = ? AND id_muestras = 6", id, (err, rows) => {
+    conexion.query("SELECT id FROM calificacion_intensidad WHERE id_usuario = ? AND id_intensidad = 6", id, (err, rows) => {
         if(err) throw err;
         if(rows[0]==null)
         {
-            conexion.query("INSERT INTO calificacion_muestras set ?",{
+            conexion.query("INSERT INTO calificacion_intensidad set ?",{
                 id_usuario: id,
-                id_muestras : '6', 
+                id_intensidad : '6', 
                 calificacion: cm },(err,result)=>{
                 console.log(err)
             });
@@ -161,13 +162,13 @@ exports.postMuestra17 = (req,res)=>{
     cm = req.body.calificacion;
     console.log(cm);
     
-    conexion.query("SELECT id FROM calificacion_muestras WHERE id_usuario = ? AND id_muestras = 7", id, (err, rows) => {
+    conexion.query("SELECT id FROM calificacion_intensidad WHERE id_usuario = ? AND id_intensidad = 7", id, (err, rows) => {
         if(err) throw err;
         if(rows[0]==null)
         {
-            conexion.query("INSERT INTO calificacion_muestras set ?",{
+            conexion.query("INSERT INTO calificacion_intensidad set ?",{
                 id_usuario: id,
-                id_muestras : '7', 
+                id_intensidad : '7', 
                 calificacion: cm },(err,result)=>{
                 console.log(err)
             });
@@ -184,13 +185,13 @@ exports.postMuestra18 = (req,res)=>{
     cm = req.body.calificacion;
     console.log(cm);
     
-    conexion.query("SELECT id FROM calificacion_muestras WHERE id_usuario = ? AND id_muestras = 8", id, (err, rows) => {
+    conexion.query("SELECT id FROM calificacion_intensidad WHERE id_usuario = ? AND id_intensidad = 8", id, (err, rows) => {
         if(err) throw err;
         if(rows[0]==null)
         {
-            conexion.query("INSERT INTO calificacion_muestras set ?",{
+            conexion.query("INSERT INTO calificacion_intensidad set ?",{
                 id_usuario: id,
-                id_muestras : '8', 
+                id_intensidad : '8', 
                 calificacion: cm },(err,result)=>{
                 console.log(err)
             });
@@ -204,7 +205,7 @@ exports.postMuestra18 = (req,res)=>{
 exports.getRange = (req,res)=>{
     const id = req.body.id;
     res.render('./rango/rangoBajo',{
-        pageTitle:"Umbral",
+        pageTitle:"Estimulacion",
         video: id
     });
 };
@@ -212,100 +213,50 @@ exports.getRange = (req,res)=>{
 exports.postRange1 = (req,res)=>{
     const id = req.body.id;
     cm = req.body.calificacion;
-    
-    if(cm > 60){
-        bmi = 'Super catadores';
-    }
-    if((cm >= 12) && (cm <= 60)){
-        bmi = 'Medios catadores';
-    }
-    if(cm < 12){
-        bmi = 'No catadores';
-    }
-    console.log(cm);
-    
-    conexion.query("SELECT id FROM calificacion_umbral WHERE id_usuario = ? AND id_umbral = 1", id, (err, rows) => {
-        if(err) throw err;
-        if(rows[0]==null)
-        {
-            conexion.query("INSERT INTO calificacion_umbral set ?",{
-                id_usuario: id,
-                id_umbral : '1', 
-                calificacion: cm,
-                BMI: bmi },(err,result)=>{
-                console.log(err)
-            });
-        }
-        res.render('./rango/rangoMedio',{
-            pageTitle:'Prueba',
-            video: id,
-        });
+    console.log("Insert xd");
+
+    conexion.query("INSERT INTO calificacion_estimulaciones set ?",{
+        id_usuario: id,
+        id_estimulacion : '1', 
+        calificacion: cm,
+        },(err,result)=>{
+        console.log(err)
+    });
+    res.render('./rango/rangoMedio',{
+        pageTitle:'Prueba',
+        video: id,
     });
 };
 
 exports.postRange2 = (req,res)=>{
     const id = req.body.id;
     cm = req.body.calificacion;
+    conexion.query("INSERT INTO calificacion_estimulaciones set ?",{
+        id_usuario: id,
+        id_estimulacion : '2', 
+        calificacion: cm,
+        },(err,result)=>{
+        console.log(err)
+    });
     
-    if(cm > 60){
-        bmi = 'Super catadores';
-    }
-    if((cm >= 12) && (cm <= 60)){
-        bmi = 'Medios catadores';
-    }
-    if(cm < 12){
-        bmi = 'No catadores';
-    }
-    console.log(cm);
-    
-    conexion.query("SELECT id FROM calificacion_umbral WHERE id_usuario = ? AND id_umbral = 2", id, (err, rows) => {
-        if(err) throw err;
-        if(rows[0]==null)
-        {
-            conexion.query("INSERT INTO calificacion_umbral set ?",{
-                id_usuario: id,
-                id_umbral : '2', 
-                calificacion: cm,
-                BMI: bmi },(err,result)=>{
-                console.log(err)
-            });
-        }
-        res.render('./rango/rangoMedioAlto',{
-            pageTitle:'Prueba',
-            video: id,
-        });
+    res.render('./rango/rangoMedioAlto',{
+        pageTitle:'Prueba',
+        video: id,
     });
 };
 
 exports.postRange3 = (req,res)=>{
     const id = req.body.id;
     cm = req.body.calificacion;
-    
-    if(cm > 60){
-        bmi = 'Super catadores';
-    }
-    if((cm >= 12) && (cm <= 60)){
-        bmi = 'Medios catadores';
-    }
-    if(cm < 12){
-        bmi = 'No catadores';
-    }
-    console.log(cm);
-    
-    conexion.query("SELECT id FROM calificacion_umbral WHERE id_usuario = ? AND id_umbral = 3", id, (err, rows) => {
-        if(err) throw err;
-        if(rows[0]==null)
-        {
-            conexion.query("INSERT INTO calificacion_umbral set ?",{
-                id_usuario: id,
-                id_umbral : '3', 
-                calificacion: cm,
-                BMI: bmi },(err,result)=>{
-                console.log(err)
-            });
-        }
-        res.redirect('./sustancia');
+
+    conexion.query("INSERT INTO calificacion_estimulaciones set ?",{
+        id_usuario: id,
+        id_estimulacion : '3', 
+        calificacion: cm,
+        },(err,result)=>{
+        console.log(err)
     });
+    res.redirect('./sustancia');
 };
 
 exports.getRange4 = (req,res)=>{
@@ -314,41 +265,30 @@ exports.getRange4 = (req,res)=>{
     });
 };
 
-/*exports.postRange = (req,res)=>{
-    const rango = req.body.calificacion;
-    if(rango < 25){
-        res.redirect('/rango4');
-    }
-    if((rango > 25) && (rango < 50)){
-        res.redirect('./rango2');
-    }
-    if((rango > 50)&&(rango<75)){
-        res.redirect('./rango3');
-    }
-    if(rango > 75){
-        res.redirect('/rango')
-    }
-};*/
-
 //PREFERENCIAS
 exports.postPreferencias = (req,res)=>{
     const id = req.body.id;
-    conexion.query("SELECT * FROM listas", (err, rows) => {
+    const visita = req.body.visita;
+    conexion.query("SELECT * FROM lista_preferencias ", (err, rows) => {
         res.render('./ejercicios/preferencias',{
             pageTitle:'Preferencias',
             pruebas: rows,
             video: id,
             rnd: Math.floor(Math.random() * 2),
+            visita: visita,
         });
     });
 };
 
 exports.postGuardarPreferencias = (req,res)=>{
     const id = req.body.id;
+    const visita = req.body.visita;
     var body = JSON.parse(JSON.stringify(req.body));
+    console.log(body);
     var obj = [];
     for(var i in body) 
         obj.push(body[i].split(' '));
+    obj.pop();
     obj.pop();
     for(let i=0; i<obj.length; i++){
         conexion.query("INSERT INTO calificacion_preferencias set ?",{
@@ -361,16 +301,19 @@ exports.postGuardarPreferencias = (req,res)=>{
     conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",id, (err,result)=>{
         res.render('./main',{
             pageTitle:'Main',
-            usuario: result,
+            usuario: result[0].id_usuario,
+            visita: visita,
         });
     });
 };
 
 exports.postUmbral = (req,res)=>{
     const id = parseInt(req.body.id);
+    const visita = req.body.visita;
+    console.log(req.body);
     const respuesta = (req.body.respuesta=="false")? false: true;
-    conexion.query("SELECT * FROM calificacion_umbrales WHERE id_usuario = ? ",id,(err, consulta)=>{
-        conexion.query("SELECT * FROM lista", (err, lista) => {
+    conexion.query("SELECT * FROM calificacion_umbrales WHERE id_usuario = ? AND visita = " + mysql.escape(visita),id,(err, consulta)=>{
+        conexion.query("SELECT * FROM lista_umbrales", (err, lista) => {
             
             var posicion = parseInt(lista.length/2);
             var numVueltas = 0;
@@ -423,25 +366,30 @@ exports.postUmbral = (req,res)=>{
                         numVueltas++;
                     
                 }
-                conexion.query("INSERT INTO calificacion_umbrales set ?",{
-                    id_usuario: id,
-                    prueba: numPrueba,
-                    respuesta: respuesta,
-                    direccion: cambio,
-                    lista: posicion,
-                    cambio_lista: cambio_lista,
-                });
+                if(numVueltas<=7){
+                    conexion.query("INSERT INTO calificacion_umbrales set ?",{
+                        id_usuario: id,
+                        prueba: numPrueba,
+                        visita: visita,
+                        respuesta: respuesta,
+                        direccion: cambio,
+                        lista: posicion,
+                        cambio_lista: cambio_lista,
+                    });
+                }
             }
             
             if(numVueltas >= 7){
-                conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",id, (err,result)=>{
+                conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?", id, (err,result)=>{
+                    console.log(result);
                     res.render('./main',{
                         pageTitle:'Main',
-                        usuario: result,
+                        usuario: result[0].id_usuario,
+                        visita: visita,
                     });
                 });
             } else {
-                res.redirect('/umbral?ID=' + id +','+ numVueltas);
+                res.redirect('/umbral?ID=' + id +'/'+ visita +'/'+ numVueltas);
             }
         });
     });
@@ -449,13 +397,14 @@ exports.postUmbral = (req,res)=>{
 
 
 exports.getUmbral = (req,res)=> {
-    var id = req.query.ID.split(',');
-    id = id[0];
+    var datos = req.query.ID.split('/');
+    id = datos[0];
+    visita = datos[1];
     conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",id, (err,result)=>{
         if(result[0]==null)
             res.redirect('/');
-        conexion.query("SELECT * FROM calificacion_umbrales WHERE id_usuario = ? ORDER BY prueba DESC LIMIT 1 ",id,(err, consulta)=>{
-            conexion.query("SELECT * FROM lista", (err, lista) => {
+        conexion.query("SELECT * FROM calificacion_umbrales WHERE id_usuario = ?  AND visita = " + mysql.escape(visita) + " ORDER BY prueba DESC LIMIT 1 ",id,(err, consulta)=>{
+            conexion.query("SELECT * FROM lista_umbrales", (err, lista) => {
                 var posicion = parseInt(lista.length/2);
                 var prueba = 1;
                 if(consulta[0]!=null){
@@ -468,6 +417,7 @@ exports.getUmbral = (req,res)=> {
                     pageTitle:'Estimulos',
                     video: id,
                     lista: obj,
+                    visita: visita,
                 });
             });
         });

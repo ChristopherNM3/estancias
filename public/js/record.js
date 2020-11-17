@@ -9,7 +9,7 @@ let video = document.querySelector("video");
 let sujeto = document.getElementById("sujeto");
 
 function IniciarVideo(){
-    navigator.mediaDevices.getUserMedia({audio:false, video:true})
+    navigator.mediaDevices.getUserMedia({audio:true, video:true})
     .then(record)
     .catch(err => console.log("err"));
 };
@@ -30,8 +30,7 @@ function record(stream){
     }
 
     mediaRecorder.onstop = function(){
-        //alert(arrayNameVideo[0]);
-        alert('Finalizo la grabacion');
+        //alert('Finalizo la grabacion');
         let blod = new Blob(chunks,{type:"video/mp4"});
         chunks = [];
         download(blod);

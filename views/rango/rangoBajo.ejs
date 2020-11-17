@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <form action="/rango1" method="POST">
+                    <form action="/estimulacion1" method="POST">
                         <div class="row">
                             <div class="mx-auto">
                                 <video autoplay id='video' style="display: none;"></video>
@@ -17,19 +17,32 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="range" class="custom-range" name="calificacion" min='0' max="100" id="range" required>
-                                <div class="ticks">
-                                    <span class="tick">Apenas detectable</span>
-                                    <span class="tick">Debil</span>
-                                    <span class="tick">Moderado</span>
-                                    <span class="tick">Fuerte</span>
-                                    <span class="tick">Muy fuerte</span>
-                                    <span class="tick">Mas fuerte inimaginable</span>
-                                </div>
+                                <fieldset class="range__field" style="float:left;transform: rotate(-90deg); width:40%;margin-top: 90px; margin-left: 300px;">
+                                    <input class="custom-range" type="range" min="0" max="135" id="range" name="calificacion" required>
+                                    <svg role="presentation" width="100%" height="15" xmlns="http://www.w3.org/2000/svg">
+                                        
+                                        <rect class="range__tick" x="2.2%" y="3" width="1" height="10"></rect>
+                                        <rect class="range__tick" x="7.9%" y="3" width="1" height="10"></rect>
+                                        <rect class="range__tick" x="17.2%" y="3" width="1" height="10"></rect>
+                                        <rect class="range__tick" x="35.6%" y="3" width="1" height="10"></rect>
+                                        <rect class="range__tick" x="53.3%" y="3" width="1" height="10"></rect>
+                                        <rect class="range__tick" x="100%" y="3" width="1" height="10"></rect>
+                                    </svg>
+                                    <svg role="presentation" width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
+                                        
+                                        <text class="range__point" x="2.2%" y="14" text-anchor="start" style="writing-mode:vertical-lr;">Apenas detectable</text>
+                                        <text class="range__point" x="7.9%" y="14" text-anchor="start" style="writing-mode:vertical-lr;" >Debil</text>
+                                        <text class="range__point" x="17.2%" y="14" text-anchor="start" style="writing-mode:vertical-lr;">Moderado</text>
+                                        <text class="range__point" x="35.6%" y="14" text-anchor="start" style="writing-mode:vertical-lr;">Fuerte</text>
+                                        <text class="range__point" x="53.3%" y="14" text-anchor="start" style="writing-mode:vertical-lr;">Muy fuerte</text>
+                                        <text class="range__point" x="98.5%" y="14" text-anchor="start" style="writing-mode:vertical-lr;">Mas fuerte inimaginable</text>
+                                    </svg>
+                                 </fieldset>
+                                
                             </div>
                             <input type="hidden" value="<%=video%>" class="name" name="id" id="sujeto">
                             <input type="hidden" value=1 class="name" id="muestra">
-                            <br><br>
+                            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                             <div class="mx-auto">
                                 <button type="submit" class="btn btn-primary" id="boton" style="font-size: 1.5rem;">Siguiente</button>
                             </div>
