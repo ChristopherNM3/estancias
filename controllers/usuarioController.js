@@ -17,7 +17,8 @@ exports.postIngresar =(req,res)=>{
     const numero = req.body.numero;
     console.log(numero);
     conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",numero, (err,result)=>{
-        console.log(result);
+        if(result[0]==null)
+            res.redirect('/');
         res.render('./main',{
             pageTitle:'Main',
             usuario:result,
@@ -46,7 +47,6 @@ exports.postUsuario = (req,res)=>{
         //res.redirect('/main');
     });
     conexion.query('SELECT * FROM usuario ORDER BY id_usuario DESC LIMIT 1', (err,result)=>{
-        //console.log(result);
         res.render('./vistaNumero',{
             pageTitle:'Numero',
             usuario: result,
@@ -57,16 +57,14 @@ exports.postUsuario = (req,res)=>{
 
 exports.postMain = (req,res)=>{
     const id = req.body.id;
-    console.log(id);
     res.render('./main',{
         pageTitle:"Main",
-        usuario:id
+        usuario: id
     })
 }
 
 //Prueba para actualizar un estado y que se cierre las respuestas de ese usuario
 exports.postReiniciarUsuario = (req,res)=>{
-    console.log(req.body)
     const {estado} = req.body;
     conexion.query('UPDATE usuario SET estado = 0 WHERE id_usuario = 6',{
         estado,
