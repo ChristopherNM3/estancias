@@ -8,15 +8,15 @@
             <th>ID</th>
             <th>ID_USUARIO</th>
             <th>NOMBRE</th>
-            <th>ID_MUESTRA</th>
+            <th>VISITA</th>
             <th>CALIFICACION</th>
         </tr>
         <% for(var i = 0; i<datos.length; i++){ %>
             <tr>
                 <td><%=datos[i].id%></td>
-                <td><%=datos[i].nombre%></td>
                 <td><%=datos[i].id_usuario%></td>
-                <td><%=datos[i].id_muestras%></td>
+                <td><%=datos[i].nombre%></td>
+                <td><%=datos[i].visita%></td>
                 <td><%=datos[i].calificacion%></td>  
             </tr>
         <%}%>

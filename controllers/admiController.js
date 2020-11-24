@@ -22,18 +22,28 @@ exports.getPreferenciasResult = (req,res) =>{
     })
 }
 
-exports.getUmbralResult = (req,res) =>{
-    conexion.query('SELECT usuario.nombre, calificacion_umbrales.* FROM usuario RIGHT JOIN calificacion_umbrales ON calificacion_umbrales.id_usuario = usuario.id_usuario WHERE usuario.id_usuario IS NOT NULL',(err,result)=>{
+exports.getUmbralResultGraso = (req,res) =>{
+    conexion.query('SELECT usuario.nombre, calificacion_umbrales.* FROM usuario RIGHT JOIN calificacion_umbrales ON calificacion_umbrales.id_usuario = usuario.id_usuario WHERE usuario.id_usuario IS NOT NULL AND calificacion_umbrales.tipo = "graso" ORDER BY calificacion_umbrales.id_usuario, calificacion_umbrales.visita, calificacion_umbrales.prueba ASC ',(err,result)=>{
         console.log(result);
         res.render('./admi/showUmbral',{
-            pageTitle: 'Resultados preferencias',
+            pageTitle: 'Resultados umbral graso',
+            datos: result,
+        });
+    })
+}
+
+exports.getUmbralResultAmargo = (req,res) =>{
+    conexion.query('SELECT usuario.nombre, calificacion_umbrales.* FROM usuario RIGHT JOIN calificacion_umbrales ON calificacion_umbrales.id_usuario = usuario.id_usuario WHERE usuario.id_usuario IS NOT NULL AND calificacion_umbrales.tipo = "amargo" ORDER BY calificacion_umbrales.id_usuario, calificacion_umbrales.visita, calificacion_umbrales.prueba ASC',(err,result)=>{
+        console.log(result);
+        res.render('./admi/showUmbral',{
+            pageTitle: 'Resultados umbral amargo',
             datos: result,
         });
     })
 }
 
 exports.getResult = (req,res)=>{
-    conexion.query('SELECT usuario.nombre, calificacion_muestras.* FROM usuario RIGHT JOIN calificacion_muestras ON calificacion_muestras.id_usuario = usuario.id_usuario WHERE usuario.id_usuario IS NOT NULL',(err,result)=>{
+    conexion.query('SELECT usuario.nombre, calificacion_estimulaciones.* FROM usuario RIGHT JOIN calificacion_estimulaciones ON calificacion_estimulaciones.id_usuario = usuario.id_usuario WHERE usuario.id_usuario IS NOT NULL',(err,result)=>{
         res.render('./admi/showResults',{
             pageTitle:'Resultados',
             datos:result

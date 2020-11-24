@@ -42,10 +42,15 @@
                     <input type="hidden" name="visita" value="<%=visita%>">
                     <button class="btn btn-primary" type="submit">Preferencias</button>
                 </form>
-                <form class="needs-validation" action="/umbral" method="POST" novalidate>
+                <form class="needs-validation" action="/umbral/amargo" method="POST" novalidate>
                     <input type="hidden" name="id" value="<%=usuario%>">
                     <input type="hidden" name="visita" value="<%=visita%>">
-                    <button class="btn btn-primary" type="submit">Umbral</button>
+                    <button class="btn btn-primary" type="submit">Umbral Amargo</button>
+                </form>
+                <form class="needs-validation" action="/umbral/graso" method="POST" novalidate>
+                    <input type="hidden" name="id" value="<%=usuario%>">
+                    <input type="hidden" name="visita" value="<%=visita%>">
+                    <button class="btn btn-primary" type="submit">Umbral Graso</button>
                 </form>
             </div>
         </div>

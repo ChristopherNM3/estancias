@@ -7,5 +7,6 @@ const controladorAdmi = require('../controllers/admiController');
 router.get('/admi',controladorAdmi.getAdmi);
 router.get('/result',controladorAdmi.getResult);
 router.get('/result_preferencias',controladorAdmi.getPreferenciasResult);
-router.get('/result_umbral',controladorAdmi.getUmbralResult);
+router.get('/result_umbral_graso',controladorAdmi.getUmbralResultGraso);
+router.get('/result_umbral_amargo',controladorAdmi.getUmbralResultAmargo);
 module.exports = router;

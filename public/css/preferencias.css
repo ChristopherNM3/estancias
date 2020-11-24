@@ -57,7 +57,7 @@ input {
 .texto { 
     position: absolute; 
     color: white; 
-    font-size: 80px;
+    font-size: 5vw;
     font-weight: bold; 
     cursor: pointer;
 }

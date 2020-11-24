@@ -43,7 +43,7 @@ router.post('/preferencias',controladorEjercicio.postPreferencias);
 router.post('/guardar-preferencias',controladorEjercicio.postGuardarPreferencias);
 
 router.get('/umbral',controladorEjercicio.getUmbral);
-router.post('/umbral',controladorEjercicio.postUmbral);
+router.post('/umbral/:tipo',controladorEjercicio.postUmbral);
 
 
 module.exports = router;

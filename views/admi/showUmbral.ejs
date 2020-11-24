@@ -20,7 +20,11 @@
                 <td><%=datos[i].nombre%></td>
                 <td><%=datos[i].prueba%></td>
                 <td><%=datos[i].visita%></td>
-                <td style="<%if(datos[i].respuesta=='correcta'){%>color: red<% } else {%>color: green<%}%>"><%=datos[i].respuesta%></td>
+                <%if(datos[i].respuesta=='correcta'){%>
+                    <td style="color: green;"><%=datos[i].respuesta%></td>
+                <% } else {%>
+                    <td style="color: red;"><%=datos[i].respuesta%></td>
+                <%}%>
                 <td><%=datos[i].direccion%></td>
                 <td><%=datos[i].lista%></td>
             </tr>
