@@ -4,15 +4,15 @@
 <body onload='javascript:IniciarVideo()'>
     <br>
     <div class="container">
-        <h1>Muestra 1</h1>
+        <h1>Muestra 2 S</h1>
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <form action="/estimulacion1" method="POST">
+                    <form action="/estimulacion5" method="POST">
                         <div class="row">
                             <div class="mx-auto">
                                 <video autoplay id='video' style="display: none;"></video>
-                                <h4>¿Que tan acida te parecio la muestra?</h4> <br>
+                                <h4>¿Que tan salada te parecio la muestra?</h4> <br>
                             </div>
                         </div>
                         <div class="row">
@@ -41,7 +41,8 @@
                                 
                             </div>
                             <input type="hidden" value="<%=video%>" class="name" name="id" id="sujeto">
-                            <input type="hidden" value=1 class="name" id="muestra">
+                            <input type="hidden" name="visita" value="<%=visita%>">
+                            <input type="hidden" value="2-intensidad-salada" class="name" id="muestra">
                             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                             <div class="mx-auto">
                                 <button type="submit" class="btn btn-primary" id="boton" style="font-size: 1.5rem;">Siguiente</button>

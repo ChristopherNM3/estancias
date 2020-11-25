@@ -6,22 +6,20 @@
     <table class="table table-striped">
         <tr>
             <th>ID</th>
+            <th>ID_USUARIO</th>
             <th>NOMBRE</th>
-            <th>EDAD</th>
-            <th>PESO</th>
-            <th>ALTURA</th>
-            <th>CINTURA</th>
-            <th>IMC</th>
+            <th>VISITA</th>
+            <th>GUSTA MAS</th>
+            <th>GUSTA MENOS</th>
         </tr>
         <% for(var i = 0; i<datos.length; i++){ %>
             <tr>
-                <td><%=datos[i].id_usuario %></td>
+                <td><%=datos[i].id%></td>
+                <td><%=datos[i].id_usuario%></td>
                 <td><%=datos[i].nombre%></td>
-                <td><%=datos[i].edad%></td>
-                <td><%=datos[i].peso%></td>  
-                <td><%=datos[i].altura%></td>
-                <td><%=datos[i].cintura%></td>
-                <td><%=datos[i].imc%></td>
+                <td><%=datos[i].visita%></td>
+                <td><%=datos[i].id_gusto%></td>
+                <td><%=datos[i].id_no_gusto%></td>
             </tr>
         <%}%>
     </table>

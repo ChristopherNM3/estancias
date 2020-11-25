@@ -35,6 +35,9 @@ router.post('/estimulacion',controladorEjercicio.getRange)
 router.post('/estimulacion1',controladorEjercicio.postRange1);
 router.post('/estimulacion2',controladorEjercicio.postRange2);
 router.post('/estimulacion3',controladorEjercicio.postRange3);
+router.post('/estimulacion4',controladorEjercicio.postRange4);
+router.post('/estimulacion5',controladorEjercicio.postRange5);
+router.post('/estimulacion6',controladorEjercicio.postRange6);
 router.get('/estimulacion4',controladorEjercicio.getRange4);
 //router.post('/rango',controladorEjercicio.postRange);
 
@@ -43,7 +46,7 @@ router.post('/preferencias',controladorEjercicio.postPreferencias);
 router.post('/guardar-preferencias',controladorEjercicio.postGuardarPreferencias);
 
 router.get('/umbral',controladorEjercicio.getUmbral);
-router.post('/umbral',controladorEjercicio.postUmbral);
+router.post('/umbral/:tipo',controladorEjercicio.postUmbral);
 
 
 module.exports = router;

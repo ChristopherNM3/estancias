@@ -1,5 +1,5 @@
 <%- include('../includes/header.ejs')%>
-<%- include('../includes/navigation2.ejs')%>
+<%- include('../includes/navigation.ejs')%>
 
 <div class="">
     <div class="text-center"></div>
@@ -8,18 +8,19 @@
             <th>ID</th>
             <th>ID_USUARIO</th>
             <th>NOMBRE</th>
-            <th>VISITA</th>
+            <th>TIPO</th>
             <th>CALIFICACION</th>
         </tr>
         <% for(var i = 0; i<datos.length; i++){ %>
             <tr>
+                <%datos[i].respuesta = (datos[i].respuesta==0)? 'incorrecta' : 'correcta';%>
                 <td><%=datos[i].id%></td>
                 <td><%=datos[i].id_usuario%></td>
                 <td><%=datos[i].nombre%></td>
-                <td><%=datos[i].visita%></td>
-                <td><%=datos[i].calificacion%></td>  
+                <td><%=datos[i].tipo%></td>
+                <td><%=datos[i].calificacion%></td>
             </tr>
         <%}%>
     </table>
 </div>
-</body>
+</body> 

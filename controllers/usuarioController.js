@@ -31,55 +31,50 @@ exports.postUsuario = (req,res)=>{
     var alturaimc = req.body.altura;
     var pesoimc = req.body.peso;
     var imc = pesoimc/(alturaimc*alturaimc);
-    console.log(imc);
 
-    const {nombre,edad,peso,altura,cintura,id} = req.body;
-    if(req.body.id == "") {
-        console.log("entro en el if")
+    const {nombre,edad,peso,altura,cintura} = req.body;
+    var id = req.body.id
+    if(id == "") {
         conexion.query("INSERT INTO usuario SET ?",{
             nombre,
-            edad,
-            peso,
-            altura,
-            cintura,
-            imc,
-            id_origen:null
-        },(err,result)=>{
-            console.log(err)
-        });
-        conexion.query('SELECT * FROM usuario ORDER BY id_usuario DESC LIMIT 1', (err,result)=>{
-            res.render('./vistaNumero',{
-                pageTitle:'Numero',
-                usuario: result,
-            });
-        });
-    }else{
-        console.log("Entro en el else")
-        conexion.query("INSERT INTO usuario SET ?",{
-            nombre,
-            edad,
-            peso,
-            altura,
-            cintura,
-            imc,
-            id_origen:id
-        },(err,result)=>{
-            console.log(err)
-        });
-        conexion.query('SELECT * FROM usuario ORDER BY id_usuario DESC LIMIT 1', (err,result)=>{
-            res.render('./main',{
-                pageTitle:'Main',
-                usuario: result,
-            });
         });
     }
+    conexion.query('SELECT * FROM usuario ORDER BY id_usuario DESC LIMIT 1', (err,result)=>{
+        var id = (req.body.id == "")? result[0].id_usuario : req.body.id;
+        conexion.query('SELECT id_usuario FROM usuario WHERE id_usuario = ?', id, (err,verificar)=>{
+            if(verificar[0]!=null){
+                conexion.query("SELECT * FROM visitas WHERE id_usuario = ? ORDER BY visita DESC LIMIT 1 ",id,(err, consulta)=>{
+                    var visita = (consulta[0]==null)? 1: consulta[0].visita+1;
+                    conexion.query("INSERT INTO visitas SET ?",{
+                        id_usuario: id,
+                        visita: visita,
+                        edad,
+                        peso,
+                        altura,
+                        cintura,
+                        imc,
+                    });
+                    res.render('./main',{
+                        pageTitle:'Main',
+                        usuario: id,
+                        visita: visita,
+                    });
+                });
+            } else {
+                res.redirect('/');
+            }
+        });
+    });
 };
 
 exports.postMain = (req,res)=>{
-    const id = req.body.id;
+    const id = [req.body.id];
+    const visita = req.body.visita;
+    console.log(id[0]);
     res.render('./main',{
         pageTitle:"Main",
-        usuario: id
+        usuario: id[0],
+        visita: visita,
     })
 }
 

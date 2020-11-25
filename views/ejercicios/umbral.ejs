@@ -5,7 +5,7 @@
     <div class="container center">
         <video autoplay id='video' style="display: none;"></video>
         <%var random = Math.floor(Math.random() * 2)%>
-        <div class="auto-mx pregunta"><h4 style="font-size: 25px;">¿Qué muestra te pareció más dulce?</h4></div>
+        <div class="auto-mx pregunta"><h4 style="font-size: 25px;">¿Cual te pareció el más <%=tipo%>?</h4></div>
         <div class="flex-container">
             <div class="efecto" style="width: min-content;" onclick="seleccionar('<%=random%>', 'img1', 'img2')">
                 <img id="img1" src="./imagenes/muestra.png">
@@ -17,11 +17,12 @@
             </div>
         </div>
         <div  style="margin: 15px; align-items: flex-end;">
-            <form action="/umbral" method="POST">
+            <form action="/umbral/<%=tipo%>" method="POST">
                 <div>
                     <input type="hidden" value="<%=video%>" class="name" name="id" id="sujeto">
                     <input type="hidden" value="<%=lista[2]%> - umbral" class="name" id="muestra">
                     <input type="hidden" name="numPrueba" value="<%=lista[2]%>">
+                    <input type="hidden" name="visita" value="<%=visita%>">
                     <input type="hidden" id="respuesta" name="respuesta">
                 </div> 
                 <div style="margin-top: 15px;" id="boton" >

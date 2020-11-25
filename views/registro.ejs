@@ -4,7 +4,7 @@
 <body>
     <link rel="stylesheet" href="/main/main.css">
     <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" style="font-size: 30px;">LOGO</a>
+      
     </nav>
     <br> <br>
     <!--formulario-->
@@ -13,7 +13,6 @@
         <div class="card-body">
           <form class="needs-validation" action="/registrando" method="POST" novalidate>
             <div class="form-row">
-
               <div class="col-md-4 mb-3">
                 <label>Nombre</label>
                 <input type="text" class="form-control" name="nombre" required>
@@ -28,7 +27,6 @@
                 <label>Cintura</label>
                 <input type="text" class="form-control" name="cintura" required>
               </div>
-
             </div>
 
             <div class="form-row">
@@ -44,7 +42,7 @@
 
               <div class="col-md-4 mb-3">
                 <label>Tengo un numero</label>
-                <input type="text" class="form-control" name="id" required>
+                <input type="text" class="form-control" name="id">
               </div>
               
             </div>
@@ -58,4 +56,22 @@
       </div>
     </div>
   </div>
+
+  <script>
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+    </script>
 </body>
