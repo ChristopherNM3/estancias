@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-body">
                         <label style="font-size: 20rem;"><%=usuario%></label>
-                        <form action="/main" method="POST" style="margin-left: 8rem; margin-right: auto;">
+                        <form action="/main" method="GET" style="margin-left: 8rem; margin-right: auto;">
                             <input type="hidden" name="id" value="<%=usuario%>">
                             <input type="hidden" name="visita" value="<%=visita%>">
                             <button class="btn btn-primary" type="submit">Siguiente</button>

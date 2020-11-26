@@ -5,9 +5,7 @@ const router = express.Router();
 const controladorIndex = require('../controllers/indexController');
 
 router.get('/',controladorIndex.getIndex);
-router.get('/main',controladorIndex.getMain);
 router.get('/index',controladorIndex.getIndex);
-//router.get('/main',controladorIndex.getMain);
 
 
 

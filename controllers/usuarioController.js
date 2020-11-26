@@ -66,9 +66,9 @@ exports.postUsuario = (req,res)=>{
     });
 };
 
-exports.postMain = (req,res)=>{
-    const id = req.body.id;
-    const visita = req.body.visita;
+exports.getMain = (req,res)=>{
+    const id = req.query.id;
+    const visita = req.query.visita;
     res.render('./main',{
         pageTitle:"Main",
         usuario: id,

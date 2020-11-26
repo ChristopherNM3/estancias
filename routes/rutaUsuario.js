@@ -5,7 +5,7 @@ const router = express.Router();
 const controladorUsuario = require('../controllers/usuarioController');
 
 router.get('/',controladorUsuario.getUsuario);
-router.post('/main',controladorUsuario.postMain);
+router.get('/main',controladorUsuario.getMain);
 router.post('/registrando',controladorUsuario.postUsuario);
 router.post('/ingresar',controladorUsuario.postIngresar);
 
