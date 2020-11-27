@@ -31,7 +31,7 @@ exports.getUmbralResultGraso = (req,res) =>{
 
 exports.getUmbralResultAmargo = (req,res) =>{
     conexion.query('SELECT usuario.nombre, calificacion_umbrales.* FROM usuario RIGHT JOIN calificacion_umbrales ON calificacion_umbrales.id_usuario = usuario.id_usuario WHERE usuario.id_usuario IS NOT NULL AND calificacion_umbrales.tipo = "amargo" ORDER BY calificacion_umbrales.id_usuario, calificacion_umbrales.visita, calificacion_umbrales.prueba ASC',(err,result)=>{
-        console.log(result);
+        //console.log(result);
         res.render('./admi/showUmbral',{
             pageTitle: 'Resultados umbral amargo',
             datos: result,
@@ -50,7 +50,7 @@ exports.getResult = (req,res)=>{
 
 exports.getEstimulacionResult = (req,res)=>{
     conexion.query('SELECT usuario.nombre, calificacion_estimulaciones.* FROM usuario RIGHT JOIN calificacion_estimulaciones ON calificacion_estimulaciones.id_usuario = usuario.id_usuario WHERE usuario.id_usuario IS NOT NULL',(err,result)=>{
-        console.log(result);
+        //console.log(result);
         res.render('./admi/showEstimulacion',{
             pageTitle:'Resultados',
             datos:result

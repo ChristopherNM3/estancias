@@ -30,7 +30,7 @@ exports.postIngresar =(req,res)=>{
 exports.postUsuario = (req,res)=>{
     var alturaimc = req.body.altura;
     var pesoimc = req.body.peso;
-    var imc = pesoimc/(alturaimc*alturaimc);
+    var imc = pesoimc/((alturaimc/100)*(alturaimc/100));
 
     const {nombre,edad,peso,altura,cintura} = req.body;
     var id = req.body.id
@@ -67,13 +67,12 @@ exports.postUsuario = (req,res)=>{
     });
 };
 
-exports.postMain = (req,res)=>{
-    const id = [req.body.id];
-    const visita = req.body.visita;
-    console.log(id[0]);
+exports.getMain = (req,res)=>{
+    const id = req.query.id;
+    const visita = req.query.visita;
     res.render('./main',{
         pageTitle:"Main",
-        usuario: id[0],
+        usuario: id,
         visita: visita,
     })
 }

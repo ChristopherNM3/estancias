@@ -16,11 +16,7 @@ exports.getMuestra11 = (req,res) =>{
     const visita = req.body.visita;
     conexion.query("SELECT id FROM calificacion_intensidad WHERE id_usuario = ? AND visita = " + mysql.escape(visita), id, (err, verificar) => {
         if(verificar[0]!=null) {
-            res.render('./main',{
-                pageTitle:'Main',
-                usuario: id,
-                visita: visita,
-            });
+            res.redirect('/main?id='+ id +'&visita='+ visita);
         } else {
             res.render('./ejercicios/sustancia11',{
                 pageTitle:'Prueba',
@@ -231,11 +227,7 @@ exports.postMuestra18 = (req,res)=>{
                 console.log(err)
             });
         }
-        res.render('./main',{
-            pageTitle:'Main',
-            usuario: id,
-            visita:visita
-        });
+        res.redirect('/main?id='+ id +'&visita='+ visita);
     });
 };
 
@@ -246,11 +238,7 @@ exports.getRange = (req,res)=>{
     const visita = req.body.visita;
     conexion.query("SELECT id FROM calificacion_estimulaciones WHERE id_usuario = ? AND visita = " + mysql.escape(visita), id, (err, verificar) => {
         if(verificar[0]!=null) {
-            res.render('./main',{
-                pageTitle:'Main',
-                usuario: id,
-                visita: visita,
-            });
+            res.redirect('/main?id='+ id +'&visita='+ visita);
         } else {
             res.render('./rango/intensidadAmarga1',{
                 pageTitle:"Intensidad",
@@ -381,17 +369,11 @@ exports.postRange6 = (req,res)=>{
         },(err,result)=>{
         console.log(err)
     });
-    res.render('./main',{
-        pageTitle:'Main',
-        usuario: id,
-        visita:visita,
-    });
+    res.redirect('/main?id='+ id +'&visita='+ visita);
 };
 
 exports.getRange4 = (req,res)=>{
-    res.render('./rango/rangoAlto',{
-        pageTitle:"Muestra Rango",
-    });
+    res.redirect('/main?id='+ id +'&visita='+ visita);
 };
 
 //PREFERENCIAS
@@ -410,11 +392,7 @@ exports.postPreferencias = (req,res)=>{
                 });
             });
         } else {
-            res.render('./main',{
-                pageTitle:'Main',
-                usuario: id,
-                visita: visita,
-            });
+            res.redirect('/main?id='+ id +'&visita='+ visita);
         }
     });
 };
@@ -439,11 +417,7 @@ exports.postGuardarPreferencias = (req,res)=>{
         });
     }
     conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",id, (err,result)=>{
-        res.render('./main',{
-            pageTitle:'Main',
-            usuario: result[0].id_usuario,
-            visita: visita,
-        });
+        res.redirect('/main?id='+ id +'&visita='+ visita);
     });
 };
 
@@ -458,10 +432,11 @@ exports.postUmbral = (req,res)=>{
             var posicion = parseInt(lista.length/2);
             var numVueltas = 0;
             var numPrueba = 1;
-            if(consulta[0]!=null){
-                var vueltas = consulta[0].direccion;
+            var vueltas;
+            if(consulta[1]!=null){
+                vueltas = (consulta[0].direccion=="indefinido")? consulta[1].direccion: consulta[0].direccion;
                 for(var i in consulta){
-                    if(consulta[i].direccion!=vueltas && consulta[i].direccion!="ninguna" && consulta[i].direccion!="indefinido"|| consulta[i].direccion=="ninguna"){
+                    if(consulta[i].direccion!=vueltas && consulta[i].direccion!="ninguna" && consulta[i].direccion!="indefinido" || consulta[i].direccion=="ninguna"){
                         numVueltas++;
                         vueltas = consulta[i].direccion;
                     }
@@ -501,8 +476,8 @@ exports.postUmbral = (req,res)=>{
                     
                     if(!respuesta && posicion == (lista.length-1) || respuesta && posicion == 0 && consulta[ultimo].direccion=="indefinido")
                         cambio = "ninguna";
-
-                    if(cambio!=vueltas && cambio!="ninguna" && cambio!="indefinido"|| cambio=="ninguna")
+                    
+                    if(cambio!=vueltas && cambio!="ninguna" && cambio!="indefinido" && consulta.length!=1 || cambio=="ninguna")
                         numVueltas++;
                     
                 }
@@ -521,14 +496,7 @@ exports.postUmbral = (req,res)=>{
             }
             
             if(numVueltas >= 7){
-                conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?", id, (err,result)=>{
-                    console.log(result);
-                    res.render('./main',{
-                        pageTitle:'Main',
-                        usuario: result[0].id_usuario,
-                        visita: visita,
-                    });
-                });
+                res.redirect('/main?id='+ id +'&visita='+ visita);
             } else {
                 res.redirect('/umbral?ID=' + id +'/'+ visita +'/'+ tipo +'/'+ numVueltas);
             }
@@ -556,15 +524,7 @@ exports.getUmbral = (req,res)=> {
                         posicion = (consulta[0].direccion=="izquierda")? posicion-1 : ((consulta[0].direccion=="derecha")? posicion+1: posicion);
                         prueba = consulta[0].prueba + 1;
                     }
-                    var cadena1 = lista[posicion].masAlto.toString(); 
-                    var arrCad1 = cadena1.split('');
-                    cadena1 = Math.floor(Math.random() * 9) + arrCad1[0] + Math.floor(Math.random() * 9) + arrCad1[1] + Math.floor(Math.random() * 9) + arrCad1[2];
-                    var cadena2 = lista[posicion].masBajo.toString(); 
-                    var arrCad2 = cadena2.split('');
-                    cadena2 = Math.floor(Math.random() * 9) + arrCad2[0] + Math.floor(Math.random() * 9) + arrCad2[1] + Math.floor(Math.random() * 9) + arrCad2[2];
-
-                    var obj = [cadena1, cadena2, prueba];
-                    //var obj = [lista[posicion].masAlto, lista[posicion].masBajo, prueba];
+                    var obj = [Math.floor(Math.random() * 9) + lista[posicion].masAlto.toString(), Math.floor(Math.random() * 9) + lista[posicion].masBajo.toString(), prueba];
                     res.render('./ejercicios/umbral',{
                         pageTitle:'Estimulos',
                         video: id,
