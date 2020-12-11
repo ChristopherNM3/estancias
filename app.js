@@ -10,7 +10,7 @@ const PUERTO = 443;
 
 app.set('view engine', 'ejs');//para que solo tome archivos ejs para la interfaz
 app.use(express.static('public'));
-app.use(bodyParser.urlencoded({extended:false}));//Pasar json para que la bd lo pueda leer
+app.use(bodyParser.urlencoded({limit:'10mb',extended:true}));//Pasar json para que la bd lo pueda leer
 
 //Declaracion de rutas
 const indexRoutes = require('./routes/rutaIndex');

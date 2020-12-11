@@ -1,0 +1,102 @@
+<%- include('../includes/header.ejs')%>
+<body>
+    <form action="/guardarListaBD" method="POST">
+        <link rel="stylesheet" href="/main/main.css">
+        <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" style="font-size: 30px;" href="./">LOGO</a>
+            <button type="submit" class="btn btn-primary" style="font-size: 20px;">Registro</button>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-striped">
+                        <%var contadorBajoAmargo = 0%>
+                        <%var contadorAltoAmargo = 100%>.
+                        <%var contadorBajoGraso = 200%>
+                        <%var contadorAltoGraso = 300%>
+                        <tr>
+                            <th>PRUEBA</th>
+                            <th>NIVEL</th>
+                            <th>TIPO</th>
+                            <th>MAS BAJO</th>
+                            <th>MAS ALTO</th>
+                        </tr>
+                        <% for(var i = 0; i<100; i++) {%>
+                        <tr>
+                            <td><%=i+1%></td>
+                            <%if(i>=90){%>
+                                <td>9</td>
+                            <%}else if(i>=80){%>
+                                <td>8</td>
+                            <%}else if(i>=70){%>
+                                <td>7</td>
+                            <%}else if(i>=60){%>
+                                <td>6</td>
+                            <%}else if(i>=50){%>
+                                <td>5</td>
+                            <%}else if(i>=40){%>
+                                <td>4</td>
+                            <%}else if(i>=30){%>
+                                <td>3</td>
+                            <%}else if(i>=20){%>
+                                <td>2</td>
+                            <%}else if(i>=10){%>
+                                <td>1</td>
+                            <%}else{%>
+                                <td>0</td>
+                            <%}%>
+                            <td>Amargo</td>
+                            <td style="text-align: center;"><%=numeroAleatorioMandar[contadorBajoAmargo]%></td>
+                            <%contadorBajoAmargo++%>
+                            <td style="background-color: yellow; text-align: center;"><%=numeroAleatorioMandar[contadorAltoAmargo]%></td>
+                            <%contadorAltoAmargo++%>
+                        </tr>
+                        <%}%>
+                    </table>
+                </div> <br><br>
+                <div class="col-md-6">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>PRUEBA</th>
+                            <th>NIVEL</th>
+                            <th>TIPO</th>
+                            <th>MAS BAJO</th>
+                            <th>MAS ALTO</th>
+                        </tr>
+                        <% for(var i = 0; i<100; i++) {%>
+                            <tr>
+                                <td><%=i+1%></td>
+                                <%if(i>=90){%>
+                                    <td>9</td>
+                                <%}else if(i>=80){%>
+                                    <td>8</td>
+                                <%}else if(i>=70){%>
+                                    <td>7</td>
+                                <%}else if(i>=60){%>
+                                    <td>6</td>
+                                <%}else if(i>=50){%>
+                                    <td>5</td>
+                                <%}else if(i>=40){%>
+                                    <td>4</td>
+                                <%}else if(i>=30){%>
+                                    <td>3</td>
+                                <%}else if(i>=20){%>
+                                    <td>2</td>
+                                <%}else if(i>=10){%>
+                                    <td>1</td>
+                                <%}else{%>
+                                    <td>0</td>
+                                <%}%>
+                                <td>Graso</td>
+                                <td style="text-align: center;"><%=numeroAleatorioMandar[contadorBajoGraso]%></td>
+                                <%contadorBajoGraso++%>
+                                <td style="background-color: yellow; text-align: center;"><%=numeroAleatorioMandar[contadorAltoGraso]%></td>
+                                <%contadorAltoGraso++%>
+                            </tr>
+                            <%}%>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>

@@ -58,3 +58,582 @@ exports.getEstimulacionResult = (req,res)=>{
     })
 }
 
+exports.getListauUmbral = (req,res)=>{
+    var numeroAleatorioMandar = new Array();
+    var usados = new Array();
+   
+    for(var i=0;i<400;i++){
+        if(usados.length != (999-110)){
+            do{ 
+                var numeroAleatorio = Math.floor(Math.random()*(999-100+1))+100;
+                var repe = repetidos(numeroAleatorio);
+            }while(repe != false)
+            numeroAleatorioMandar[i] = numeroAleatorio;
+            usados.push(numeroAleatorio);
+        }else{
+            numeroAleatorioMandar[i] = null;
+        }
+    }
+    guardarLista();
+
+    res.render('./admi/crearLista',{
+        pageTitle:'Crear lista umbrales',
+        numeroAleatorioMandar:numeroAleatorioMandar,
+    })
+
+    function repetidos(num){
+        var repe = false;
+        for(var i=0;i<usados.length;i++){
+            if(num == usados[i]){
+                repe = true;
+
+            }
+        }
+        return repe;
+    }
+
+    function guardarLista(){
+        var contBajoAmargo =0;
+        var contAltoAmargo =100;
+        var contBajoGraso =200;
+        var contAltoGraso =300;
+        var contIdNumero = 0;
+        conexion.query('SELECT * FROM lista_umbrales',(err,result)=>{
+ //////////////////Amargo
+            if(result[0] == null){ 
+                for(var i = 0;i<10;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:0,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                }
+                contIdNumero = 0; 
+                for(var i = 10;i<20;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:1,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++; 
+                    contBajoAmargo++;
+                    contAltoAmargo++;                      
+                } 
+                contIdNumero = 0
+                for(var i = 20;i<30;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:2,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 30;i<40;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:3,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 40;i<50;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:4,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 50;i<60;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:5,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 60;i<70;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:6,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 70;i<80;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:7,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 80;i<90;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:8,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 90;i<100;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:9,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                 //////////////////Graso
+                 for(var i = 0;i<10;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:0,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                }
+                contIdNumero = 0; 
+                for(var i = 10;i<20;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:1,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 20;i<30;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:2,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 30;i<40;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:3,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 40;i<50;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:4,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 50;i<60;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:5,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 60;i<70;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:6,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 70;i<80;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:7,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 80;i<90;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:8,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 90;i<100;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:9,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+            }else{ //SEGUNDA O MAS VECES
+                conexion.query('DELETE FROM lista_umbrales');
+                for(var i = 0;i<10;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:0,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                }
+                contIdNumero = 0; 
+                for(var i = 10;i<20;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:1,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++; 
+                    contBajoAmargo++;
+                    contAltoAmargo++;                      
+                } 
+                contIdNumero = 0
+                for(var i = 20;i<30;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:2,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 30;i<40;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:3,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 40;i<50;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:4,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 50;i<60;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:5,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 60;i<70;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:6,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 70;i<80;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:7,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 80;i<90;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:8,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                for(var i = 90;i<100;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:9,
+                        idNumero: contIdNumero,
+                        tipo:'Amargo',
+                        masBajo: numeroAleatorioMandar[contBajoAmargo],
+                        masAlto: numeroAleatorioMandar[contAltoAmargo],
+                    });
+                    contIdNumero++;
+                    contBajoAmargo++;
+                    contAltoAmargo++;
+                } 
+                contIdNumero = 0;
+                 //////////////////Graso
+                 for(var i = 0;i<10;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:0,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                }
+                contIdNumero = 0; 
+                for(var i = 10;i<20;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:1,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 20;i<30;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:2,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 30;i<40;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:3,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 40;i<50;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:4,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 50;i<60;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:5,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 60;i<70;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:6,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 70;i<80;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:7,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 80;i<90;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:8,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+                for(var i = 90;i<100;i++){
+                    conexion.query("INSERT INTO lista_umbrales set ?",{
+                        nivel:9,
+                        idNumero: contIdNumero,
+                        tipo:'Graso',
+                        masBajo: numeroAleatorioMandar[contBajoGraso],
+                        masAlto: numeroAleatorioMandar[contAltoGraso],
+                    });
+                    contIdNumero++;
+                    contBajoGraso++;
+                    contAltoGraso++;
+                } 
+                contIdNumero = 0;
+            }
+        })
+
+    }
+}
+
+exports.postGuardarListaUmbrales = (req,res)=>{
+    res.render("./registro",{
+        pageTitle:'Registro',
+    });
+}
+

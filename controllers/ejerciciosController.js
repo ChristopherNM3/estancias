@@ -306,7 +306,7 @@ exports.postRange3 = (req,res)=>{
         },(err,result)=>{
         console.log(err)
     });
-    res.render('./rango/intensidadSalada1',{
+    res.render('./rango/IntensidadSalada1',{
         pageTitle:'Intensidad',
         video: id,
         visita:visita,
@@ -380,8 +380,11 @@ exports.getRange4 = (req,res)=>{
 exports.postPreferencias = (req,res)=>{
     const id = req.body.id;
     const visita = req.body.visita;
-    conexion.query("SELECT id FROM calificacion_preferencias WHERE visita = ?", visita, (err, comprobar) => {
-        if(comprobar[0]==null){
+    conexion.query("SELECT id FROM calificacion_preferencias WHERE id_usuario = ? AND visita = " + mysql.escape(visita), id, (err, comprobar) => {
+        console.log(comprobar);
+        if(comprobar[0]!=null){
+            res.redirect('/main?id='+ id +'&visita='+ visita);
+        } else {
             conexion.query("SELECT * FROM lista_preferencias ", (err, rows) => {
                 res.render('./ejercicios/preferencias',{
                     pageTitle:'Preferencias',
@@ -391,8 +394,6 @@ exports.postPreferencias = (req,res)=>{
                     visita: visita,
                 });
             });
-        } else {
-            res.redirect('/main?id='+ id +'&visita='+ visita);
         }
     });
 };
@@ -401,7 +402,7 @@ exports.postGuardarPreferencias = (req,res)=>{
     const id = req.body.id;
     const visita = req.body.visita;
     var body = JSON.parse(JSON.stringify(req.body));
-    console.log(id);
+    console.log(body);
     var obj = [];
     for(var i in body) 
         obj.push(body[i].split(' '));
@@ -410,26 +411,25 @@ exports.postGuardarPreferencias = (req,res)=>{
     for(let i=0; i<obj.length; i++){
         conexion.query("INSERT INTO calificacion_preferencias set ?",{
             id_usuario: id,
-            visita:visita,
+            visita: visita,
             id_gusto: obj[i][0], 
             id_no_gusto: obj[i][1],
             id_lista: obj[i][2],
         });
     }
-    conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",id, (err,result)=>{
-        res.redirect('/main?id='+ id +'&visita='+ visita);
-    });
+    res.redirect('/main?id='+ id +'&visita='+ visita);
 };
 
 
 exports.postUmbral = (req,res)=>{
+    const idNumero = (req.body.idNumero == undefined)? 0: req.body.idNumero;
     const tipo = req.params.tipo;
     const id = parseInt(req.body.id);
     const visita = req.body.visita;
     const respuesta = (req.body.respuesta=="false")? false: true;
     conexion.query("SELECT * FROM calificacion_umbrales WHERE id_usuario = ? AND visita = " + mysql.escape(visita) + " AND tipo = " + mysql.escape(tipo),id,(err, consulta)=>{
-        conexion.query("SELECT * FROM lista_umbrales WHERE tipo = ?",tipo, (err, lista) => {
-            var posicion = parseInt(lista.length/2);
+        conexion.query("SELECT DISTINCT nivel FROM lista_umbrales WHERE tipo = ?",tipo, (err, lista) => {
+            var posicion = 0;
             var numVueltas = 0;
             var numPrueba = 1;
             var vueltas;
@@ -446,7 +446,6 @@ exports.postUmbral = (req,res)=>{
 
                 var cambio_lista = false;
                 var cambio = "indefinido";
-                var posicion;
 
                 if(consulta[0]==null){
                     if(!respuesta){
@@ -490,6 +489,7 @@ exports.postUmbral = (req,res)=>{
                         respuesta: respuesta,
                         direccion: cambio,
                         lista: posicion,
+                        idNumero: idNumero,
                         cambio_lista: cambio_lista,
                     });
                 }
@@ -513,26 +513,36 @@ exports.getUmbral = (req,res)=> {
     
     conexion.query("SELECT id_usuario FROM usuario WHERE id_usuario = ?",id, (err,result)=>{
         conexion.query("SELECT * FROM calificacion_umbrales WHERE id_usuario = ?  AND visita = " + mysql.escape(visita) + " AND tipo = " + mysql.escape(tipo) + " ORDER BY prueba DESC LIMIT 1 ",id,(err, consulta)=>{
-            conexion.query("SELECT * FROM lista_umbrales WHERE tipo = ? ",tipo, (err, lista) => {
-                if(lista[0]==null || result[0]==null)
-                    res.redirect('/');
-                else{
-                    var posicion = parseInt(lista.length/2);
-                    var prueba = 1;
-                    if(consulta[0]!=null){
-                        posicion = consulta[0].lista; 
-                        posicion = (consulta[0].direccion=="izquierda")? posicion-1 : ((consulta[0].direccion=="derecha")? posicion+1: posicion);
-                        prueba = consulta[0].prueba + 1;
-                    }
-                    var obj = [Math.floor(Math.random() * 9) + lista[posicion].masAlto.toString(), Math.floor(Math.random() * 9) + lista[posicion].masBajo.toString(), prueba];
-                    res.render('./ejercicios/umbral',{
-                        pageTitle:'Estimulos',
-                        video: id,
-                        lista: obj,
-                        visita: visita,
-                        tipo: tipo,
+            
+            var posicion = 0;
+            var prueba = 1;
+            var idNumero = 0;
+            if(consulta[0]!=null){
+                posicion = consulta[0].lista; 
+                posicion = (consulta[0].direccion=="izquierda")? posicion-1 : ((consulta[0].direccion=="derecha")? posicion+1: posicion);
+                prueba = consulta[0].prueba + 1;
+                idNumero = (consulta[0].cambio_lista==false)? consulta[0].idNumero + 1: idNumero;
+            }
+            conexion.query("SELECT * FROM calificacion_umbrales WHERE id_usuario = ?  AND visita = " + mysql.escape(visita) + " AND tipo = " + mysql.escape(tipo) + " AND lista = " + mysql.escape(posicion) + " ORDER BY prueba DESC LIMIT 1 ",id,(err, query)=>{
+                conexion.query("SELECT * FROM lista_umbrales WHERE tipo = ? AND nivel = " + mysql.escape(posicion) ,tipo, (err, largo) => {
+                    idNumero = (query[0]!=null)? query[0].idNumero + 1: idNumero;
+                    idNumero = (idNumero==largo.length)? 0: idNumero;
+                    conexion.query("SELECT * FROM lista_umbrales WHERE tipo = ? AND idNumero = " + mysql.escape(idNumero),tipo, (err, lista) => {
+                        if(lista[0]==null || result[0]==null)
+                            res.redirect('/');
+                        else{
+                            var obj = [lista[posicion].masAlto.toString(), lista[posicion].masBajo.toString(), prueba];
+                            res.render('./ejercicios/umbral',{
+                                pageTitle:'Estimulos',
+                                video: id,
+                                lista: obj,
+                                visita: visita,
+                                tipo: tipo,
+                                idNumero: idNumero,
+                            });
+                        }
                     });
-                }
+                });
             });
         });
     });

@@ -10,4 +10,6 @@ router.get('/result_preferencias',controladorAdmi.getPreferenciasResult);
 router.get('/result_umbral_graso',controladorAdmi.getUmbralResultGraso);
 router.get('/result_umbral_amargo',controladorAdmi.getUmbralResultAmargo);
 router.get('/result_estimulacion',controladorAdmi.getEstimulacionResult);
+router.get('/crear_lista',controladorAdmi.getListauUmbral);
+router.post('/guardarListaBD',controladorAdmi.postGuardarListaUmbrales);
 module.exports = router;
